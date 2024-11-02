@@ -1,3 +1,5 @@
+@use '../../styles/Styles.module.scss' as *;
+
 .root {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -7,57 +9,57 @@
   font-family: 'Roboto';
 
   &.title {
-    font-weight: 700;
+    font-weight: $bold;
     font-size: 44px;
     line-height: 48px;
   }
   &.button {
-    font-weight: 400;
+    font-weight: $normal;
     font-size: 18px;
   }
   &.p-20 {
-    font-weight: 400;
+    font-weight: $normal;
     font-size: 20px;
     line-height: 24px;
   }
   &.p-18 {
-    font-weight: 400;
+    font-weight: $normal;
     font-size: 18px;
     line-height: 22px;
   }
   &.p-16 {
-    font-weight: 400;
+    font-weight: $normal;
     font-size: 16px;
     line-height: 20px;
   }
 
   &.p-14 {
-    font-weight: 400;
+    font-weight: $normal;
     font-size: 14px;
     line-height: 18px;
   }
 
   &.normal {
-    font-weight: 400;
+    font-weight: $normal;
   }
 
   &.medium {
-    font-weight: 500;
+    font-weight: $medium;
   }
 
   &.bold {
-    font-weight: 700;
+    font-weight: $bold;
   }
 
   &.primary {
-    color: #000000;
+    color: $primary;
   }
 
   &.secondary {
-    color: #afadb5;
+    color: $secondary;
   }
 
   &.accent {
-    color: #518581;
+    color: $accent;
   }
 }

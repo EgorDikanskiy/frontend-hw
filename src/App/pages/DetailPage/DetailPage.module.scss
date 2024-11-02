@@ -1,3 +1,5 @@
+@use '../../../styles/Styles.module.scss' as *;
+
 .item__info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -36,8 +38,8 @@
 
     &__cart {
         background-color: transparent;
-        color: #000;
-        border: 1px solid #000000;
+        color: $primary;
+        border: 1px solid $primary;
         margin-left: 36px;
     }
 }

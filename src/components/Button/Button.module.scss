@@ -1,6 +1,8 @@
+@use '../../styles/Styles.module.scss' as *;
+
 .button {
   height: 52px;
-  background: #518581;
+  background: $accent;
   display: flex;
   align-items: center;
   cursor: pointer;

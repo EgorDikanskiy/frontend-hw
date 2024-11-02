@@ -1,17 +1,19 @@
+@use '../../../styles/Styles.module.scss' as *;
+
 .root {
     width: 24px;
     height: 24px;
   }
   
 .primary {
-  color: #000000;
+  color: $primary;
 }
   
 .secondary {
-  color: #afadb5;
+  color: $secondary;
 }
   
 .accent {
-  color: #518581;
+  color: $accent;
 }
   

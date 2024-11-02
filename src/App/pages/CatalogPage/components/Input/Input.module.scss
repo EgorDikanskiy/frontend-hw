@@ -1,3 +1,5 @@
+@use '../../../../../styles/Styles.module.scss' as *;
+
 .content {
     height: 52px;
     background-color: #ffffff;
@@ -17,5 +19,5 @@
 }
 
 .focus {
-    border: 1px solid #518581;
+    border: 1px solid $accent;
 }
