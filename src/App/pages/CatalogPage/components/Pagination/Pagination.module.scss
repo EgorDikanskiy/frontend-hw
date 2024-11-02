@@ -1,0 +1,20 @@
+@use '../../../../../styles/Styles.module.scss' as *;
+
+.pagination {
+    margin: 0 auto;
+    padding: 50px 0px 0px 0px;
+    display: flex;
+    list-style: none;
+
+    &__item {
+        width: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.active {
+            color: white;
+            background-color: $accent;
+        }
+    }
+}
