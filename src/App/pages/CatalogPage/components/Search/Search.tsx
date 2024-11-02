@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from '../Input';
-import Button from 'components/Button';
+import Button from '../../../../../components/Button';
 import styles from './Search.module.scss'
 
 

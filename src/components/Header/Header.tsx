@@ -1,6 +1,6 @@
 import Navigation from 'components/Nav';
 import styles from './Header.module.scss'
-import Panel from 'components/Panel';
+import Panel from '../Panel';
 import logo from '../../assets/logo.png'
 
 const Header = () => {

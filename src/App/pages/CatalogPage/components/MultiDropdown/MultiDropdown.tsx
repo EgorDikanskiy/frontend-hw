@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import Input from '../Input';
 import styles from './MultiDropdown.module.scss';
-import ArrowDownIcon from 'components/icons/ArrowDownIcon';
+import ArrowDownIcon from '../../../../../components/icons/ArrowDownIcon';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */

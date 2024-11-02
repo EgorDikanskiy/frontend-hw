@@ -1,12 +1,12 @@
-import Card from 'components/Card'
+import Card from '../../../components/Card'
 import { Link } from 'react-router-dom';
 import styles from './СatalogPage.module.scss'
 import LoaderStyles from '../../../styles/Styles.module.scss'
 import MultiDropdown, { MultiDropdownProps, Option } from './components/MultiDropdown';
-import Text from 'components/Text';
+import Text from '../../../components/Text';
 import React, { useEffect, useState } from 'react';
 import Search from './components/Search';
-import Header from 'components/Header';
+import Header from '../../../components/Header';
 import Pagination from './components/Pagination';
 import useAxios from 'axios-hooks'
 import Loader from '../../../components/Loader';
