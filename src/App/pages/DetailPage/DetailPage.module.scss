@@ -1,0 +1,55 @@
+@use '../../../styles/Styles.module.scss' as *;
+
+.item__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 26px;
+
+    &__description {
+        margin-top: 26px;
+    }
+
+    &__price {
+        margin-top: 60px;
+    }
+
+    &__images {
+        margin-right: 40px ;
+    } 
+}
+
+.related__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.subtitle {
+    font-size: 32px !important;
+    margin-top: 60px;
+}
+
+.buttons {
+    display: flex;
+    margin-top: 36px;
+
+    &__cart {
+        background-color: transparent;
+        color: $primary;
+        border: 1px solid $primary;
+        margin-left: 36px;
+    }
+}
+
+.nav_detail {
+    display: flex;
+    margin-top: 40px;
+    align-items: center;
+
+    &__text {
+        align-items: center;
+    }
+}
