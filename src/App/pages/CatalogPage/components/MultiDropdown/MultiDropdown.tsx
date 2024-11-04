@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import Input from '../Input';
+import Input from '../../../../../components/Input';
 import styles from './MultiDropdown.module.scss';
 import ArrowDownIcon from '../../../../../components/icons/ArrowDownIcon';
 

@@ -1,4 +1,4 @@
-@use '../../styles/Styles.module.scss' as *;
+@use 'styles/variables' as *;
 
 .button {
   height: 52px;
@@ -15,6 +15,9 @@
   text-align: center;
   color: #ffffff;
   padding: 0px 20px;
+
+  transition: background-color 0.3s;
+
 
   &:hover:not(:disabled):not(.loading) {
     background-color: #86aaa7;

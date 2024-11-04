@@ -1,0 +1,22 @@
+@use 'styles/variables' as *;
+
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    padding-top: 40px;
+
+    &__amount {
+        color: $accent;
+        font-size: 20px;
+        padding-left: 40px;
+    }
+
+    &__total {
+        font-size: 32px !important;
+        display: flex;
+        align-items: center;
+        padding-top: 60px;
+    }
+    
+}

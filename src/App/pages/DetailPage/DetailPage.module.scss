@@ -1,18 +1,11 @@
-@use '../../../styles/Styles.module.scss' as *;
+@use 'styles/variables' as *;
 
-.item__info {
+.item {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin-top: 26px;
 
-    &__description {
-        margin-top: 26px;
-    }
-
-    &__price {
-        margin-top: 60px;
-    }
 
     &__images {
         margin-right: 40px ;
@@ -32,17 +25,6 @@
     margin-top: 60px;
 }
 
-.buttons {
-    display: flex;
-    margin-top: 36px;
-
-    &__cart {
-        background-color: transparent;
-        color: $primary;
-        border: 1px solid $primary;
-        margin-left: 36px;
-    }
-}
 
 .nav_detail {
     display: flex;

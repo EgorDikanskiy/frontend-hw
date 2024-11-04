@@ -1,15 +1,14 @@
 import styles from './Pagination.module.scss'
 import classNames from 'classnames'
+import PreviosIcon from 'components/icons/PreviosIcon'
 
 const Pagination = () => {
     return (
         <ul className={styles.pagination}>
             <li className={classNames(styles.pagination__item, styles.disabled)}>
-                <svg width="38" height="42" viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.12 31.5599L14.4267 22.8666C13.4 21.8399 13.4 20.1599 14.4267 19.1333L23.12 10.4399" stroke="#AFADB5" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <PreviosIcon/>
             </li>
-            <li className={classNames(styles.pagination__item, styles.active)}>
+            <li className={classNames(styles.pagination__item, styles.pagination__item_active)}>
                 1
             </li>
             <li className={classNames(styles.pagination__item)}>

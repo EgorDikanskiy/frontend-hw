@@ -25,7 +25,11 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler'
+        api: 'modern-compiler',
+        // additionalData: `
+        // @import "${path.resolve(__dirname, 'src')}/styles/Roboto/fonts.scss";
+        // @import "${path.resolve(__dirname, 'src')}/styles/variables.scss";
+        // `
       }
     }
   },

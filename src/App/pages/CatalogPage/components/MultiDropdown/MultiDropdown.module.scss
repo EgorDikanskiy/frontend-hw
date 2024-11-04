@@ -1,4 +1,4 @@
-@use '../../../../../styles/Styles.module.scss' as *;
+@use 'styles/variables' as *;
 
 .root {
   position: relative;
@@ -45,6 +45,7 @@
 
 .item__selected {
   color: $accent;
+  transition: color 0.3s;
 
   &:hover{
     color: $secondary;

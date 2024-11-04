@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import styles from './Input.module.scss'
 import classNames from 'classnames';
-import ArrowDownIcon from '../../../../../components/icons/ArrowDownIcon';
+import ArrowDownIcon from '../icons/ArrowDownIcon';
 
 export type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
