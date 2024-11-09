@@ -9,6 +9,13 @@ export type CarouselProps = {
 };
 
 const DemoCarousel: React.FC<CarouselProps> = ({images}) => {
+        function filterUrlImage(str: string | undefined) {
+            if (str?.slice(-5) == '.jpeg') {
+                return str
+            }
+            return 'https://my.mhaus.org/global_graphics/default-store-350x350.jpg';
+        }
+
         return (
             <Carousel className={styles.slider} width='100%' showStatus={false} showIndicators={false} showThumbs={false} renderArrowPrev={(clickHandler, hasPrev) => {
                 return (
@@ -72,7 +79,7 @@ const DemoCarousel: React.FC<CarouselProps> = ({images}) => {
               }}>
                 {images.map(image => (
                     <div key={image}>
-                        <img src={image} />
+                        <img src={filterUrlImage(image)} />
                     </div>
                 ))}
             </Carousel>
