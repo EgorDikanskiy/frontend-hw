@@ -33,7 +33,7 @@ class ItemsStore {
     getItemsAction = () => {
         this.items = fromPromise(getItems());
         this.items?.then(action((items) => {
-            this.filteredItems = items; // Начальное значение фильтра
+            this.filteredItems = items;
         }));
     };
 

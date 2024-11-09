@@ -62,7 +62,7 @@ const Pagination = observer(() => {
 
     return (
         <ul className={styles.pagination}>
-            <li className={classNames(styles.pagination__item)} onClick={() => handlePrevPageChange()}>
+            <li className={classNames(styles.pagination__item)} onClick={handlePrevPageChange}>
                 <PreviosIcon disabled={paginationModel.currentPage === 1}/>
             </li>
             {paginationItems.map((page, index) =>
@@ -85,7 +85,7 @@ const Pagination = observer(() => {
                     </li>
                 )
             )}
-            <li className={classNames(styles.pagination__item)} onClick={() => handleNextPageChange()}>
+            <li className={classNames(styles.pagination__item)} onClick={handleNextPageChange}>
                 <NextIcon disabled={paginationModel.currentPage === paginationModel.totalPage}/>
             </li>
         </ul>

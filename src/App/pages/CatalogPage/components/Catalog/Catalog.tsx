@@ -19,6 +19,14 @@ interface CatalogProps {
     count_items: number;
 }
 
+function filterUrlImage(str: string | undefined) {
+    if (str?.slice(-5) == '.jpeg') {
+        return str
+    }
+    return 'https://my.mhaus.org/global_graphics/default-store-350x350.jpg';
+}
+
+
 
 const Catalog: React.FC<CatalogProps> = observer(({ cards, start_point, lenght_info, count_items }) => {
     return (
@@ -31,7 +39,7 @@ const Catalog: React.FC<CatalogProps> = observer(({ cards, start_point, lenght_i
             <div className={styles.catalog}>
                 {cards && cards?.slice(start_point, start_point + count_items).map((card?: { id: number; title: string; description: string; images: Array<string>; price: number; }) => (
                     <div key={card?.id}>
-                        <Link to={`/detail/${card?.id}`}><Card title={card?.title} subtitle={card?.description} image={card?.images[0]} contentSlot={'$' + card?.price} actionSlot='Add to Cart'></Card></Link>
+                        <Link to={`/detail/${card?.id}`}><Card title={card?.title} subtitle={card?.description} image={filterUrlImage(card?.images[0])} contentSlot={'$' + card?.price} actionSlot='Add to Cart'></Card></Link>
                     </div>
                 ))}
             </div>

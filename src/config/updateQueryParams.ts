@@ -1,4 +1,4 @@
-export const updateQueryParams = (navigate: Function, params: Record<string, string | number | null>) => {
+export const updateQueryParams = (navigate: Function, params: Record<string, string | number | null | number[]>) => {
     const searchParams = new URLSearchParams(window.location.search);
     
     Object.keys(params).forEach((key) => {

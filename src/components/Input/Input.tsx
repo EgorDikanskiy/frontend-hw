@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import styles from './Input.module.scss'
 import classNames from 'classnames';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
-import { observer } from 'mobx-react-lite';
 
 export type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
