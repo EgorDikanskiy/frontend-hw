@@ -16,4 +16,11 @@
 .accent {
   color: $accent;
 }
+
+.icon {
+  cursor: pointer;
+  &__disabled {
+    opacity: 0.5;
+  }
+}
   

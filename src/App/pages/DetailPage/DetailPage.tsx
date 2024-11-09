@@ -1,27 +1,36 @@
 import styles from './DetailPage.module.scss'
-import Text from '../../../components/Text'
+import Text from 'components/Text'
 import DemoCarousel from './components/Slider'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import useAxios from 'axios-hooks'
-import Loader from '../../../components/Loader';
-import React from 'react'
-import { apiRoutes } from '../../../config/apiRoutes';
+import { useParams, useNavigate } from 'react-router-dom'
+import Loader from 'components/Loader';
+import React, { useEffect } from 'react'
 import ItemInfo from './components/ItemInfo'
 import Catalog from '../CatalogPage/components/Catalog'
+import itemsStore from '../../../stores/items-store'
+import { observer } from 'mobx-react-lite';
 
 
 
-const DetailPage = () => {
+const DetailPage = observer(() => {
     const { id } = useParams();
 
-    const [{ data: item_info, loading, error }] = useAxios(apiRoutes.productById(id));
+    const {getItemAction, item} = itemsStore;
+    const {getItemsAction, items} = itemsStore;
 
-    const [{ data: cards}] = useAxios(apiRoutes.products);
+    useEffect(() => {
+        getItemAction(id);
+        getItemsAction();
+    }, [])
 
     const navigate = useNavigate();
 
-    if (error) return <p>Error!</p>
-    if (loading) return <Loader/>
+    if (item?.state == 'pending') {
+        return <Loader/>
+    }
+
+    if (item?.state == 'rejected') {
+        return <p>Error</p>
+    }
 
     return (
         <>
@@ -34,15 +43,16 @@ const DetailPage = () => {
             </button>
             <div className={styles.item}>
                 <div className={styles.item__images}>
-                    {item_info.images && <DemoCarousel images={item_info.images}/>}
+                    {item?.value.images && <DemoCarousel images={item?.value.images}/>}
                 </div>
-                <ItemInfo title={item_info.title} description={item_info.description} price={item_info.price}/>
+                <ItemInfo title={item?.value.title} description={item?.value.description} price={item?.value.price}/>
             </div>
             <Text className={styles.subtitle} view='title' weight='bold'>Related Items</Text>
-            {cards && <Catalog cards={cards} count_items={3} lenght_info={false}/>}
+            <Catalog cards={items?.value} start_point={0} count_items={3} lenght_info={false}/>
         </div>
         </>
     )
-}
+})
+;
 
 export default DetailPage

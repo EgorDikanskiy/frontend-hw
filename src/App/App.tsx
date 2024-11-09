@@ -1,5 +1,4 @@
-import Header from 'components/Header';
-import { routerUrls } from '../config/routerUrls'
+import { routerUrls } from 'config/routerUrls'
 import CatalogPage from './pages/CatalogPage'
 import DetailPage from './pages/DetailPage'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';  

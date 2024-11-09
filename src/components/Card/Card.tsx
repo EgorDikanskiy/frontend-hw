@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './Card.module.scss';
-import Text from '../Text';
-import Button from '../Button';
+import Text from 'components/Text';
+import Button from 'components/Button';
 import classNames from 'classnames';
 
 export type CardProps = {
     /** Дополнительный classname */
     className?: string,
     /** URL изображения */
-    image: string;
+    image?: string;
     /** Слот над заголовком */
     captionSlot?: React.ReactNode;
     /** Заголовок карточки */

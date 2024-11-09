@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import Input from '../../../../../components/Input';
+import Input from 'components/Input';
 import styles from './MultiDropdown.module.scss';
-import ArrowDownIcon from '../../../../../components/icons/ArrowDownIcon';
+import ArrowDownIcon from 'components/icons/ArrowDownIcon';
 
 export type Option = {
+  id(id: any): unknown;
   /** Ключ варианта, используется для отправки на бек/использования в коде */
   key: string;
   /** Значение варианта, отображается пользователю */
