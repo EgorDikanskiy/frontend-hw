@@ -1,0 +1,53 @@
+@use 'styles/variables' as *;
+
+.root {
+  position: relative;
+  width: 300px;
+}
+
+.multi-dropdown {
+  position: relative;
+}
+
+.category {
+  background: white;
+  box-sizing: border-box;
+  color: $secondary;
+
+  &:focus {
+    color: #151411;
+  }
+  &:checked {
+    color: $secondary;
+  }
+
+  &:disabled {
+    color: #151411;
+    opacity: 0.8;
+  }
+}
+
+.menuCategory {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 10px rgba($primary, 0.25);
+  width: 100%;
+  top: calc(100% + 8px);
+}
+
+.item {
+  padding: 14px 12px;
+  display: flex;
+  align-items: center;
+  color: $primary;
+  cursor: pointer;
+}
+
+.item__selected {
+  color: $accent;
+  transition: color 0.3s;
+
+  &:hover{
+    color: $secondary;
+  }
+}

@@ -1,0 +1,19 @@
+@use 'styles/variables' as *;
+
+.root {
+    width: 24px;
+    height: 24px;
+  }
+  
+.primary {
+  color: $primary;
+}
+  
+.secondary {
+  color: $secondary;
+}
+  
+.accent {
+  color: $accent;
+}
+  

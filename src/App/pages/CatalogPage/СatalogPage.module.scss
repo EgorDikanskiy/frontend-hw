@@ -1,0 +1,7 @@
+@use 'styles/mixin' as *;
+
+.footer {
+    @include center-horizontal;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

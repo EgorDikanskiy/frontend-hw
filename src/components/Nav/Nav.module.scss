@@ -1,0 +1,19 @@
+@use 'styles/variables' as *;
+
+.navigation {
+    display: flex;
+    cursor: pointer;
+
+    &__item {
+        padding: 20px;
+        list-style: none;
+        font-weight: 400;
+        transform: translateY(3px);
+
+        &.active {
+            color: $accent;
+            border-bottom: 3px solid;
+            font-weight: 600;
+        }
+    }
+}

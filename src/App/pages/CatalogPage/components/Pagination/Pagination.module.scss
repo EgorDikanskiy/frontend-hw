@@ -1,0 +1,19 @@
+@use 'styles/variables' as *;
+@use 'styles/mixin.scss' as *;
+
+.pagination {
+    margin: 0 auto;
+    padding: 50px 0px 0px 0px;
+    display: flex;
+    list-style: none;
+
+    &__item {
+        width: 38px;
+        @include flex-center;
+
+        &_active {
+            color: white;
+            background-color: $accent;
+        }
+    }
+}

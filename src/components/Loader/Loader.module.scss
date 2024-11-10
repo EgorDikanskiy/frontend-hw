@@ -1,0 +1,18 @@
+@use 'styles/mixin' as *;
+
+.loader {
+    animation:spin 2s linear infinite;
+
+    @keyframes spin { 
+        100% { 
+            -webkit-transform: rotate(360deg); 
+            transform:rotate(360deg); 
+        } 
+    }
+
+    &__container {
+        height: 100vh;
+        display: flex;
+        @include center-horizontal;
+    }
+}
