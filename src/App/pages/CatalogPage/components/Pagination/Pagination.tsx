@@ -1,64 +1,44 @@
+// src/components/CatalogPage/components/Pagination.tsx
 import styles from './Pagination.module.scss';
 import classNames from 'classnames';
 import PreviosIcon from 'components/icons/PreviosIcon';
 import NextIcon from 'components/icons/NextIcon';
 import { observer } from 'mobx-react-lite';
-import paginationModel from '../../../../../stores/pagination-model';
 import { updateQueryParams } from '../../../../../config/updateQueryParams';
 import { useNavigate } from 'react-router-dom';
+import { useCatalogStore } from '../../CatalogStoreContext';
+import { action } from 'mobx';
 
 const Pagination = observer(() => {
+    const catalogStore = useCatalogStore();
+    const { paginationModel } = catalogStore;
     const navigate = useNavigate();
 
-    const handleNextPageChange = () => {
-        paginationModel.nextPage();
-        updateQueryParams(navigate, { page: paginationModel.currentPage });
-    };
-
-    const handlePrevPageChange = () => {
-        paginationModel.prevPage();
-        updateQueryParams(navigate, { page: paginationModel.currentPage });
-    };
-
-    const getPaginationItems = () => {
-        const { currentPage, totalPage } = paginationModel;
-        const pages = [];
-
-        if (totalPage <= 5) {
-            // Если страниц 5 или меньше, отображаем их все
-            for (let i = 1; i <= totalPage; i++) {
-                pages.push(i);
-            }
-        } else {
-            // Первая страница
-            pages.push(1);
-
-            // Добавляем "..." перед текущей страницей, если нужно
-            if (currentPage > 3) {
-                pages.push("...");
-            }
-
-            // Добавляем текущую страницу и две соседние
-            const startPage = Math.max(2, currentPage - 1);
-            const endPage = Math.min(totalPage - 1, currentPage + 1);
-
-            for (let i = startPage; i <= endPage; i++) {
-                pages.push(i);
-            }
-
-            // Добавляем "..." после текущей страницы, если нужно
-            if (currentPage < totalPage - 2) {
-                pages.push("...");
-            }
-
-            // Последняя страница
-            pages.push(totalPage);
+    const handleNextPageChange = action(() => {
+        if (paginationModel.currentPage < paginationModel.totalPage) {  // Проверка крайней страницы
+            paginationModel.setNextPage();
+            catalogStore.queryModel.page = paginationModel.currentPage; // Синхронизация с queryModel
+            updateQueryParams(navigate, { page: paginationModel.currentPage });
         }
+    });
 
-        return pages;
-    };
+    const handlePrevPageChange = action(() => {
+        if (paginationModel.currentPage > 1) {  // Проверка крайней страницы
+            paginationModel.setPrevPage();
+            catalogStore.queryModel.page = paginationModel.currentPage; // Синхронизация с queryModel
+            updateQueryParams(navigate, { page: paginationModel.currentPage });
+        }
+    });
 
-    const paginationItems = getPaginationItems();
+    const handlePageClick = action((page: number) => {
+        if (page !== paginationModel.currentPage) {  // Проверка активной страницы
+            paginationModel.setCurrentPage(page);
+            catalogStore.queryModel.page = page; // Синхронизация с queryModel
+            updateQueryParams(navigate, { page });
+        }
+    });
+
+    const paginationItems = paginationModel.getPaginationItems();
 
     return (
         <ul className={styles.pagination}>
@@ -72,10 +52,7 @@ const Pagination = observer(() => {
                         className={classNames(styles.pagination__item, {
                             [styles.pagination__item_active]: page === paginationModel.currentPage,
                         })}
-                        onClick={() => {
-                            paginationModel.setCurrentPage(page);
-                            updateQueryParams(navigate, { page });
-                        }}
+                        onClick={() => handlePageClick(page)}
                     >
                         {page}
                     </li>
@@ -89,7 +66,7 @@ const Pagination = observer(() => {
                 <NextIcon disabled={paginationModel.currentPage === paginationModel.totalPage}/>
             </li>
         </ul>
-    )
+    );
 });
 
 export default Pagination;

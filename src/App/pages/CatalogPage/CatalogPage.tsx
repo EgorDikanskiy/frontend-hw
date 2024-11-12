@@ -1,48 +1,53 @@
-import styles from './СatalogPage.module.scss'
-import { useEffect } from 'react';
+import styles from './СatalogPage.module.scss';
 import Pagination from './components/Pagination';
 import Loader from 'components/Loader';
 import Title from './components/Title';
 import Filter from './components/Filter';
 import Catalog from './components/Catalog';
-import itemsStore from '../../../stores/items-store';
 import { observer } from 'mobx-react-lite';
-import PaginationModel from '../../../stores/pagination-model';
+import { CatalogStoreProvider, useCatalogStore } from './CatalogStoreContext';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { action } from 'mobx';
 
-const CatalogPage = observer(() => {
-    const {getItemsAction, items} = itemsStore;
-    const currentPage = PaginationModel.currentPage;
-    const LIMIT = 9;
-    const searchParams = new URLSearchParams(location.search);
-    const page = Number(searchParams.get('page')) || 1;
-    PaginationModel.setCurrentPage(page);
-    PaginationModel.setTotalPage(Math.ceil(itemsStore.filteredItems.length / LIMIT))
+const CatalogPageContent = observer(() => {
+    const catalogStore = useCatalogStore();
+    const [searchParams] = useSearchParams();
 
-    useEffect(() => {
-        getItemsAction();
-    }, []);
-    
-
-    if (items?.state == 'pending') {
-        return <Loader/>
-    }
-
-    if (items?.state == 'rejected') {
-        return <p>Error</p>
-    }
+    useEffect(action(() => {
+        catalogStore.queryModel.setQueryParams(searchParams);
+        catalogStore.fetchData();
+    }), [searchParams, catalogStore]);
 
     return (
-    <>
-        <div className='container'>
-            <Title/>
-            <Filter/>
-            <Catalog cards={itemsStore.filteredItems} start_point={(currentPage - 1) * LIMIT} count_items={LIMIT} lenght_info={true}/>
+        <div className="container">
+            <Title />
+            <Filter />
+            <div>
+                {!catalogStore.loading && (
+                    <Catalog
+                        cards={catalogStore.items}
+                        count_all_items={catalogStore.totalItemsCount}
+                        lenght_info={true}
+                    />
+                )}
+                {catalogStore.loading && <Loader />}
+                {catalogStore.error && <p>{catalogStore.error}</p>}
+            </div>
             <div className={styles.footer}>
-                <Pagination/>
+                <Pagination />
             </div>
         </div>
-    </>)
-}
-);
+    );
+});
+
+// Главный компонент страницы, оборачивающий контент в CatalogStoreProvider
+const CatalogPage = () => {
+    return (
+        <CatalogStoreProvider>
+            <CatalogPageContent />
+        </CatalogStoreProvider>
+    );
+};
 
 export default CatalogPage;

@@ -1,8 +1,13 @@
-import axios from "axios";
-import { apiRoutes } from "config/apiRoutes";
+import axios from 'axios';
 
-export type Items = {
-    category: any;
+export interface GetItemsParams {
+    title?: string;
+    categoryId?: number;
+    offset?: number;
+    limit?: number;
+}
+
+export interface Items {
     id: number;
     title: string;
     price: number;
@@ -10,7 +15,9 @@ export type Items = {
     images: string[];
 }
 
-
-export const getItems = async () =>
-    (await axios.get<Items[]>(apiRoutes.products)).data;
-
+export async function getItems(params: GetItemsParams): Promise<Items[]> {
+    const response = await axios.get<Items[]>('https://api.escuelajs.co/api/v1/products', {
+        params,
+    });
+    return response.data;
+}

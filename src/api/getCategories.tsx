@@ -5,7 +5,7 @@ import { apiRoutes } from "config/apiRoutes";
 export type Category = {
     id: number;
     name: string;
-    images: string;
+    image: string;
     creationAt: string;
     updatedAt: string;
 }

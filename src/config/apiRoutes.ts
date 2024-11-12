@@ -1,5 +1,8 @@
+const API_BASE = 'https://api.escuelajs.co/api/v1/';
+const createApiRoute = (route: string) => `${API_BASE}${route}`;
+
 export const apiRoutes = {
-    products: 'https://api.escuelajs.co/api/v1/products',
-    productById: (id: string | undefined) => `https://api.escuelajs.co/api/v1/products/${id}`,
+    products: createApiRoute('products'),
+    productById: (id: string | undefined) => createApiRoute(`products/${id}`),
     categories: 'https://api.escuelajs.co/api/v1/categories',
 };

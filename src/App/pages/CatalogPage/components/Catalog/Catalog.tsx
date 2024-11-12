@@ -3,6 +3,7 @@ import Text from "components/Text";
 import { Link } from "react-router-dom";
 import styles from './Catalog.module.scss'
 import { observer } from "mobx-react-lite";
+import { filterUrlImage } from '../../../../../utils/filterUrlImage'
 
 interface Card {
     id: number;
@@ -14,30 +15,21 @@ interface Card {
 
 interface CatalogProps {
     cards: Card[] | any;
-    start_point: number;
     lenght_info: boolean;
-    count_items: number;
-}
-
-function filterUrlImage(str: string | undefined) {
-    if (str?.slice(-5) == '.jpeg') {
-        return str
-    }
-    return 'https://my.mhaus.org/global_graphics/default-store-350x350.jpg';
+    count_all_items: number;
 }
 
 
-
-const Catalog: React.FC<CatalogProps> = observer(({ cards, start_point, lenght_info, count_items }) => {
+const Catalog: React.FC<CatalogProps> = observer(({ cards, lenght_info, count_all_items }) => {
     return (
         <div>
             {lenght_info &&
                 <div>
-                    <Text className={styles.catalog__total} view='title' weight='bold'>Total Product <span className={styles.catalog__amount}>{cards?.length}</span></Text>
+                    <Text className={styles.catalog__total} view='title' weight='bold'>Total Product <span className={styles.catalog__amount}>{count_all_items}</span></Text>
                 </div>
             }
             <div className={styles.catalog}>
-                {cards && cards?.slice(start_point, start_point + count_items).map((card?: { id: number; title: string; description: string; images: Array<string>; price: number; }) => (
+                {cards && cards?.map((card?: { id: number; title: string; description: string; images: Array<string>; price: number; }) => (
                     <div key={card?.id}>
                         <Link to={`/detail/${card?.id}`}><Card title={card?.title} subtitle={card?.description} image={filterUrlImage(card?.images[0])} contentSlot={'$' + card?.price} actionSlot='Add to Cart'></Card></Link>
                     </div>
