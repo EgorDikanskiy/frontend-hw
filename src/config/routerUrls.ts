@@ -7,5 +7,5 @@ export const routerUrls = {
     productDetail: {
       mask: '/detail/:id',
       create: (id: number) => `/detail/${id}`,
-    }
+    },
 }

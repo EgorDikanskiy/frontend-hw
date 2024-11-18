@@ -43,6 +43,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         }}
         onChange={handleChange}
         {...props}
+        ref={ref}
         >
         </input>
         {afterSlot && <ArrowDownIcon color='secondary'/>}

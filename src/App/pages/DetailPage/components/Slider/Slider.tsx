@@ -2,6 +2,7 @@ import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import styles from './Slider.module.scss'
+import { filterUrlImage } from '../../../../../utils/filterUrlImage'
 
 
 export type CarouselProps = {
@@ -9,6 +10,7 @@ export type CarouselProps = {
 };
 
 const DemoCarousel: React.FC<CarouselProps> = ({images}) => {
+
         return (
             <Carousel className={styles.slider} width='100%' showStatus={false} showIndicators={false} showThumbs={false} renderArrowPrev={(clickHandler, hasPrev) => {
                 return (
@@ -72,7 +74,7 @@ const DemoCarousel: React.FC<CarouselProps> = ({images}) => {
               }}>
                 {images.map(image => (
                     <div key={image}>
-                        <img src={image} />
+                        <img src={filterUrlImage(image)} />
                     </div>
                 ))}
             </Carousel>

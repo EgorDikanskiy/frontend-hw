@@ -1,5 +1,5 @@
 import styles from './Title.module.scss'
-import Text from '../../../../../components/Text';
+import Text from 'components/Text';
 
 const Title = () => {
     return (

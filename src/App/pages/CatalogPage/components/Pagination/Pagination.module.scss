@@ -10,6 +10,7 @@
     &__item {
         width: 38px;
         @include flex-center;
+        cursor: pointer;
 
         &_active {
             color: white;

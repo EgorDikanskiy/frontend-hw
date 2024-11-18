@@ -3,9 +3,9 @@ import Button from "components/Button";
 import styles from "./ItemInfo.module.scss"
 
 export type ItemInfoProps = {
-    title: string;
-    description: string;
-    price: string;
+    title?: string;
+    description?: string;
+    price?: number;
 };
 
 const ItemInfo: React.FC<ItemInfoProps> = ({title, description, price}) => {

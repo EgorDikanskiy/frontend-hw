@@ -1,30 +1,53 @@
-import styles from './СatalogPage.module.scss'
-import React from 'react';
+import styles from './СatalogPage.module.scss';
 import Pagination from './components/Pagination';
-import useAxios from 'axios-hooks'
-import Loader from '../../../components/Loader';
-import { apiRoutes } from '../../../config/apiRoutes';
+import Loader from 'components/Loader';
 import Title from './components/Title';
 import Filter from './components/Filter';
 import Catalog from './components/Catalog';
+import { observer } from 'mobx-react-lite';
+import { CatalogStoreProvider, useCatalogStore } from './CatalogStoreContext';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { action } from 'mobx';
 
-const CatalogPage = () => {
-    const [{ data: cards, loading, error }] = useAxios(apiRoutes.products);
+const CatalogPageContent = observer(() => {
+    const catalogStore = useCatalogStore();
+    const [searchParams] = useSearchParams();
 
-    if (error) return <p>Error!</p>
-    if (loading) return <Loader/>
+    useEffect(action(() => {
+        catalogStore.queryModel.setQueryParams(searchParams);
+        catalogStore.fetchData();
+    }), [searchParams, catalogStore]);
 
     return (
-    <>
-        <div className='container'>
-            <Title/>
-            <Filter/>
-            <Catalog cards={cards} count_items={9} lenght_info={true}/>
+        <div className="container">
+            <Title />
+            <Filter />
+            <div>
+                {!catalogStore.loading && (
+                    <Catalog
+                        cards={catalogStore.items}
+                        count_all_items={catalogStore.totalItemsCount}
+                        lenght_info={true}
+                    />
+                )}
+                {catalogStore.loading && <Loader />}
+                {catalogStore.error && <p>{catalogStore.error}</p>}
+            </div>
             <div className={styles.footer}>
-                <Pagination/>
+                <Pagination />
             </div>
         </div>
-    </>)
+    );
+});
+
+// Главный компонент страницы, оборачивающий контент в CatalogStoreProvider
+const CatalogPage = () => {
+    return (
+        <CatalogStoreProvider>
+            <CatalogPageContent />
+        </CatalogStoreProvider>
+    );
 };
 
 export default CatalogPage;
