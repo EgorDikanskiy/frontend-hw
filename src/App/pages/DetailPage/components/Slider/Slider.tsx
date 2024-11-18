@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -8,7 +9,7 @@ export type CarouselProps = {
   images: Array<string>;
 };
 
-const DemoCarousel: React.FC<CarouselProps> = ({ images }) => {
+const DemoCarousel: React.FC<CarouselProps> = observer(({ images }) => {
   return (
     <Carousel
       className={styles.slider}
@@ -130,6 +131,6 @@ const DemoCarousel: React.FC<CarouselProps> = ({ images }) => {
       ))}
     </Carousel>
   );
-};
+});
 
 export default DemoCarousel;
