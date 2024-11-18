@@ -8,6 +8,7 @@ import { updateQueryParams } from '../../../../../config/updateQueryParams';
 import { useNavigate } from 'react-router-dom';
 import { useCatalogStore } from '../../CatalogStoreContext';
 import { action } from 'mobx';
+import React from 'react';
 
 const Pagination = observer(() => {
     const catalogStore = useCatalogStore();

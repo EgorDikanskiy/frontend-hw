@@ -1,9 +1,10 @@
 import Search from '../Search';
 import MultiDropdown, { Option } from '../MultiDropdown';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCatalogStore } from '../../CatalogStoreContext';
+import React from 'react';
 
 const Filter = observer(() => {
     const itemsStore = useCatalogStore();

@@ -3,7 +3,8 @@ import Text from "components/Text";
 import { Link } from "react-router-dom";
 import styles from './Catalog.module.scss'
 import { observer } from "mobx-react-lite";
-import { filterUrlImage } from '../../../../../utils/filterUrlImage'
+import { filterUrlImage } from 'utils/filterUrlImage'
+import React from "react";
 
 interface Card {
     id: number;
@@ -14,7 +15,7 @@ interface Card {
 }
 
 interface CatalogProps {
-    cards: Card[] | any;
+    cards: Card[];
     lenght_info: boolean;
     count_all_items: number;
 }

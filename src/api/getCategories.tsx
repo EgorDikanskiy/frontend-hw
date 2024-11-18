@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiRoutes } from "config/apiRoutes";
 
 
-export type Category = {
+export interface Category {
     id: number;
     name: string;
     image: string;
@@ -10,6 +10,9 @@ export type Category = {
     updatedAt: string;
 }
 
+export async function getCategories(): Promise<Category[]> {
+    const response = await axios.get(apiRoutes.categories);
+    return response.data;
+}
 
-export const getCategories = async () =>
-    (await axios.get<Category[]>(apiRoutes.categories)).data;
+

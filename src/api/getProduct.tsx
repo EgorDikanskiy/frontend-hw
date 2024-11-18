@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiRoutes } from "config/apiRoutes";
 
 
-export type Item = {
+export interface Product  {
     id: number;
     title: string;
     price: number;
@@ -11,7 +11,8 @@ export type Item = {
     category: {id: number};
 }
 
-
-export const getItem = async (id: string | undefined) =>
-    (await axios.get(apiRoutes.productById(id))).data;
+export async function getProduct(id: string | undefined): Promise<Product> {
+    const response = await axios.get(apiRoutes.productById(id));
+    return response.data;
+}
 

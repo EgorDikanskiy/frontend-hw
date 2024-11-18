@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { useCatalogStore } from '../../CatalogStoreContext';
 import { useNavigate } from "react-router-dom";
 import { action } from "mobx";
+import React from "react";
 
 const Search = observer(() => {
     const itemsStore = useCatalogStore();

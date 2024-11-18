@@ -1,6 +1,7 @@
 import Text from "components/Text";
 import Button from "components/Button";
 import styles from "./ItemInfo.module.scss"
+import React from "react";
 
 export type ItemInfoProps = {
     title?: string;

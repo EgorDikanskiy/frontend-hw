@@ -9,6 +9,7 @@ import { CatalogStoreProvider, useCatalogStore } from './CatalogStoreContext';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { action } from 'mobx';
+import React from 'react';
 
 const CatalogPageContent = observer(() => {
     const catalogStore = useCatalogStore();
@@ -26,7 +27,7 @@ const CatalogPageContent = observer(() => {
             <div>
                 {!catalogStore.loading && (
                     <Catalog
-                        cards={catalogStore.items}
+                        cards={catalogStore.products}
                         count_all_items={catalogStore.totalItemsCount}
                         lenght_info={true}
                     />

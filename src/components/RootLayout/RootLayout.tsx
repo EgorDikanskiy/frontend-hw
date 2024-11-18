@@ -1,4 +1,5 @@
 import Header from "components/Header";
+import React from "react";
 
 export type RootLayoutProps = {
     children?: React.ReactNode;
@@ -6,10 +7,10 @@ export type RootLayoutProps = {
 
 const RootLayout: React.FC<RootLayoutProps> = ({children}) => {
     return (
-        <>
+        <div>
             <Header/>
             {children}
-        </>
+        </div>
     );
     
 }

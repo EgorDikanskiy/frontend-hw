@@ -1,18 +1,17 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import QueryModel from './QueryParamsModel';
-import PaginationModel from './pagination-model';
-import { getItems, Items } from '../../../../api/getItems';
-import { Category, getCategories } from '../../../../api/getCategories';
-import { fromPromise, IPromiseBasedObservable } from 'mobx-utils';
+import PaginationModel from './PaginationModel';
+import { getProducts, Products } from 'api/getProducts';
+import { Category, getCategories } from 'api/getCategories';
 import { NavigateFunction } from 'react-router-dom';
-import { updateQueryParams } from '../../../../config/updateQueryParams';
+import { updateQueryParams } from 'config/updateQueryParams';
 
 class CatalogStore {
-    items: Items[] = [];
+    products: Products[] = [];
     totalItemsCount: number = 0;
     queryModel: QueryModel;
     paginationModel: PaginationModel;
-    categories?: IPromiseBasedObservable<Category[]>;
+    categories: Category[] = [];
     selectedCategoryId: number | null = null;
     loading = false;
     error: string | null = null;
@@ -25,22 +24,23 @@ class CatalogStore {
 
     // Геттер для списка опций категорий
     get categoryOptions() {
-        return this.categories?.state === "fulfilled"
-            ? this.categories.value.map(category => ({
-                id: category.id,
-                value: category.name,
-                key: String(category.id),
-            }))
-            : [];
+        if (this.loading) return [];  // Если данные всё ещё загружаются
+        if (this.error) return [];    // Если произошла ошибка
+
+        return this.categories.map(category => ({
+            id: category.id,
+            value: category.name,
+            key: String(category.id),
+        }));
     }
 
     // Геттер для выбранной категории
     get selectedCategory() {
-        return this.selectedCategoryId
-            ? this.categoryOptions.find(option => option.id === this.selectedCategoryId) || null
-            : null;
-    }
+        if (this.selectedCategoryId === null) return null; // Если категория не выбрана
 
+        return this.categoryOptions.find(option => option.id === this.selectedCategoryId) || null;
+    }
+    
     // Синхронизируем состояние стора с URL-параметром categoryId
     syncCategoryFromUrl(searchParams: URLSearchParams) {
         const categoryId = searchParams.get('categoryId');
@@ -91,7 +91,7 @@ class CatalogStore {
             await this.fetchItems();
         } catch (error) {
             runInAction(() => {
-                this.error = 'Ошибка при загрузке товаров';
+                this.error = `Ошибка при загрузке товаров ${error}`;
             });
         } finally {
             runInAction(() => {
@@ -103,9 +103,9 @@ class CatalogStore {
     async fetchItems() {
         const params = this.queryModel.getParamsForApi();
         try {
-            const response = await getItems(params);
+            const response = await getProducts(params);
             runInAction(() => {
-                this.items = response;
+                this.products = response;
             });
         } catch (error) {
             console.error("Ошибка при загрузке товаров:", error);
@@ -116,7 +116,7 @@ class CatalogStore {
     async fetchTotalItemsCount() {
         const { title, categoryId } = this.queryModel.getParamsForApi();
         try {
-            const filteredItems = await getItems({ title, categoryId });
+            const filteredItems = await getProducts({ title, categoryId });
             runInAction(() => {
                 this.totalItemsCount = filteredItems.length;
             });
@@ -126,8 +126,18 @@ class CatalogStore {
         }
     }
 
-    getCategoriesAction = () => {
-        this.categories = fromPromise(getCategories());
+    getCategoriesAction = async () => {
+        try {
+            const response = await getCategories();
+            runInAction(() => {
+                this.categories = response;
+            });
+        } catch (error) {
+            runInAction(() => {
+                this.error = 'Ошибка при загрузке категорий';
+            });
+            console.error("Ошибка при загрузке категорий", error);
+        }
     };
 }
 

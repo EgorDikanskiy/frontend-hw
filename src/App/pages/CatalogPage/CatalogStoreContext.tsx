@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import CatalogStore from './stores/CatalogStore';
-import PaginationModel from './stores/pagination-model';
+import PaginationModel from './stores/PaginationModel';
 import QueryModel from './stores/QueryParamsModel';
 
 // Создаем интерфейс для контекста, чтобы упростить типизацию

@@ -5,7 +5,7 @@ import styles from './MultiDropdown.module.scss';
 import ArrowDownIcon from 'components/icons/ArrowDownIcon';
 
 export type Option = {
-  id(id: any): unknown;
+  id(id: number | string): unknown;
   /** Ключ варианта, используется для отправки на бек/использования в коде */
   key: string;
   /** Значение варианта, отображается пользователю */

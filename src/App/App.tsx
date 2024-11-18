@@ -3,6 +3,7 @@ import CatalogPage from './pages/CatalogPage'
 import DetailPage from './pages/DetailPage'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';  
 import RootLayout from 'components/RootLayout';
+import React from 'react';
 
 function App() {
   return (

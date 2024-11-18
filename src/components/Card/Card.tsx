@@ -38,12 +38,12 @@ const Card: React.FC<CardProps> = ({
         <div className={classNames(className, styles.card)}  onClick={onClick}>
             <img src={image} alt="Card" className={styles.card__image} />
             <div className={styles.card__content}>
-                {captionSlot && <Text view='p-14' color='secondary' weight='medium' className={styles.card_caption} children={captionSlot}></Text>}
-                <Text view='p-20' weight='normal' maxLines={2} children={title} className={styles.card__title}></Text>
-                <Text view='p-16' weight={'normal'} maxLines={3} children={subtitle} color='secondary' className={styles.card__subtitle}></Text>
+                {captionSlot && <Text view='p-14' color='secondary' weight='medium' className={styles.card_caption}>{captionSlot}</Text>}
+                <Text view='p-20' weight='normal' maxLines={2} className={styles.card__title}>{title}</Text>
+                <Text view='p-16' weight={'normal'} maxLines={3} color='secondary' className={styles.card__subtitle}>{subtitle}</Text>
                 <div className={styles.card__footer}>
-                    {contentSlot && <Text view='p-18' children={contentSlot} weight='bold'></Text>}
-                    {actionSlot &&  <Button children={actionSlot}></Button>}
+                    {contentSlot && <Text view='p-18' weight='bold'>{contentSlot}</Text>}
+                    {actionSlot &&  <Button>{actionSlot}</Button>}
                 </div>
             </div>
         </div>

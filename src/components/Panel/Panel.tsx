@@ -1,8 +1,9 @@
+import React from 'react';
 import styles from './Panel.module.scss'
 
 const Panel = () => {
     return (
-        <>
+        <div>
         <div className={styles.panel}>
         <button className={styles.panel__button}>
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +20,7 @@ const Panel = () => {
 </svg>
         </button>
         </div>
-        </>
+        </div>
     );
 }
 

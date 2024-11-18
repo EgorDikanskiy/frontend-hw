@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export interface GetItemsParams {
+export interface GetProductsParams {
     title?: string;
     categoryId?: number;
     offset?: number;
     limit?: number;
 }
 
-export interface Items {
+export interface Products {
     id: number;
     title: string;
     price: number;
@@ -15,8 +15,8 @@ export interface Items {
     images: string[];
 }
 
-export async function getItems(params: GetItemsParams): Promise<Items[]> {
-    const response = await axios.get<Items[]>('https://api.escuelajs.co/api/v1/products', {
+export async function getProducts(params: GetProductsParams): Promise<Products[]> {
+    const response = await axios.get<Products[]>('https://api.escuelajs.co/api/v1/products', {
         params,
     });
     return response.data;
