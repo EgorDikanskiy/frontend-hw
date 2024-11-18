@@ -2,7 +2,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 export const updateQueryParams = (
   navigate: NavigateFunction,
-  params: Record<string, string | number | null | number[]>
+  params: Record<string, string | number | null | number[]>,
 ) => {
   const searchParams = new URLSearchParams(window.location.search);
 

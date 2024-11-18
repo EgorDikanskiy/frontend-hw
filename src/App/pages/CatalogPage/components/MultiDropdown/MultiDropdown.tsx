@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from 'components/Input';
-import styles from './MultiDropdown.module.scss';
 import ArrowDownIcon from 'components/icons/ArrowDownIcon';
+import styles from './MultiDropdown.module.scss';
 
 export type Option = {
   id(id: number | string): unknown;
@@ -27,11 +27,8 @@ export type MultiDropdownProps = {
   getTitle: (value: Option[]) => string;
 };
 
-const MultiDropdown: React.FC<MultiDropdownProps> = (
-  props: MultiDropdownProps
-) => {
-  const { options, value, onChange, disabled, getTitle , className} = props;
-
+const MultiDropdown: React.FC<MultiDropdownProps> = (props: MultiDropdownProps) => {
+  const { options, value, onChange, disabled, getTitle, className } = props;
 
   const [search, setSearch] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -58,15 +55,12 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (
     if (isOpen) return setSearch('');
 
     setSearch(value.length ? getTitle(value) : '');
-
   }, [isOpen, getTitle, value, setSearch]);
 
   const items = options
     .filter((option) => {
       if (search === null) return true;
-      return option.value
-        .toLocaleLowerCase()
-        .startsWith(search.toLocaleLowerCase());
+      return option.value.toLocaleLowerCase().startsWith(search.toLocaleLowerCase());
     })
     .map((option) => {
       const isSelected = value.map((v) => v.key).includes(option.key);
@@ -100,9 +94,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = (
         placeholder={getTitle(value)}
         afterSlot={<ArrowDownIcon />}
       />
-      {isOpen && !disabled && (
-        <div className={styles.menuCategory}>{items}</div>
-      )}
+      {isOpen && !disabled && <div className={styles.menuCategory}>{items}</div>}
     </div>
   );
 };

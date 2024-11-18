@@ -1,5 +1,5 @@
-import * as React from 'react';
 import classNames from 'classnames';
+import * as React from 'react';
 import styles from './Text.module.scss';
 
 export type TextProps = {
@@ -28,16 +28,9 @@ const Text: React.FC<TextProps> = (props: TextProps) => {
   const view = props.view ?? 'p-14';
   const weight = props.weight ?? 'normal';
 
-
-
   return (
     <Tag
-      className={classNames(
-        styles.root,
-        styles[weight],
-        styles[view],
-        styles[color]
-      ) + ' ' + className}
+      className={classNames(styles.root, styles[weight], styles[view], styles[color]) + ' ' + className}
       style={{
         WebkitLineClamp: maxLines,
       }}
