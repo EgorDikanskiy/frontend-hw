@@ -3,7 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const webpack = require('webpack'); // Импортируем Webpack для использования DefinePlugin
+const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -44,9 +45,9 @@ module.exports = {
   entry: './src/main.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
-    publicPath: '/',
+    publicPath: '',
   },
   mode: isProd ? 'production' : 'development',
   resolve: {
@@ -95,10 +96,6 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      },
     ],
   },
   plugins: [
@@ -109,16 +106,40 @@ module.exports = {
     !isProd && new ReactRefreshWebpackPlugin(),
     isProd &&
       new MiniCssExtractPlugin({
-        filename: '[name]-[hash].css',
+        filename: '[name]-[contenthash].css',
       }),
     new ESLintPlugin({
       extensions: ['ts', 'tsx', 'js', 'jsx'], // Указываем типы файлов для проверки
       emitWarning: true,
     }),
+    // Определение NODE_ENV только через DefinePlugin
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-    }), // Устанавливаем значение NODE_ENV
+    }),
   ].filter(Boolean),
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 244000,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
+  },
+  stats: {
+    errorDetails: true,
+  },
   devServer: {
     static: './dist',
     port: 3000,

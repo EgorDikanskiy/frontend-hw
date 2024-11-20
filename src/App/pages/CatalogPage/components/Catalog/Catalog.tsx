@@ -1,10 +1,11 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'components/Card';
 import Text from 'components/Text';
 import { filterUrlImage } from 'utils/filterUrlImage';
 import styles from './Catalog.module.scss';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Card {
   id: number;
