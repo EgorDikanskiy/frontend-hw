@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require('webpack'); // Импортируем Webpack для использования DefinePlugin
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -47,7 +48,7 @@ module.exports = {
     clean: true,
     publicPath: '/',
   },
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss', '.css'],
     alias: {
@@ -94,6 +95,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [
@@ -110,6 +115,9 @@ module.exports = {
       extensions: ['ts', 'tsx', 'js', 'jsx'], // Указываем типы файлов для проверки
       emitWarning: true,
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }), // Устанавливаем значение NODE_ENV
   ].filter(Boolean),
   devServer: {
     static: './dist',
