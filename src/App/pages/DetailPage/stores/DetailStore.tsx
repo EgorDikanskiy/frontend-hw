@@ -1,17 +1,58 @@
-import { makeAutoObservable } from "mobx"
-import { Item, getItem } from '../../../../api/getItem'
-import { fromPromise, IPromiseBasedObservable } from "mobx-utils"
+import { makeAutoObservable, runInAction } from 'mobx';
+import { getProduct, Product } from 'api/getProduct';
+import { getProducts, Products } from 'api/getProducts';
 
-class ItemStore {
-    item?: IPromiseBasedObservable<Item>;
+class DetailStore {
+  product: Product = {
+    id: 0,
+    title: '',
+    price: 0,
+    description: '',
+    images: [],
+    category: { id: 0 },
+  };
+  relatedItems: Products[] = [];
+  loading = false;
+  error: string | null = null;
 
-    constructor() {
-        makeAutoObservable(this);
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  // Объединённая функция для загрузки данных
+  fetchAllData = async (id: string | undefined) => {
+    this.loading = true;
+    this.error = null;
+
+    try {
+      // Загрузка основного элемента
+      const fetchedItem = await getProduct(id);
+      runInAction(() => {
+        this.product = fetchedItem;
+      });
+
+      // Загрузка связанных товаров
+      if (fetchedItem.category.id) {
+        const params = {
+          categoryId: fetchedItem.category.id,
+          offset: 0,
+          limit: 3,
+        };
+        const fetchedRelatedItems = await getProducts(params);
+        runInAction(() => {
+          this.relatedItems = fetchedRelatedItems;
+        });
+      }
+    } catch (error) {
+      runInAction(() => {
+        this.error = `Ошибка при загрузке данных + ${error}`;
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
     }
-
-    getItemAction = (id: string | undefined) => {
-        this.item = fromPromise(getItem(id));
-    }
+  };
 }
 
-export default ItemStore;
+export default DetailStore;
