@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import { updateQueryParams } from 'config/updateQueryParams';
 import { useCatalogStore } from '../../CatalogStoreContext';
 
@@ -13,11 +13,11 @@ const Filter = observer(() => {
   const itemsStore = useCatalogStore();
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
   useEffect(() => {
     itemsStore.initializeFilter(new URLSearchParams(location.search), navigate);
-  }, [location.search, itemsStore, navigate, searchParams]);
+  }, [location.search, itemsStore, navigate]);
 
   const handleCategoryChange = useCallback(
     (selectedOptions: Option[]) => {
