@@ -1,0 +1,14 @@
+.filter {
+    display: flex;
+    justify-content: space-between;
+
+    &__category {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    &__price {
+        flex: 0 0 60%;
+        max-width: 60%;
+    }
+}

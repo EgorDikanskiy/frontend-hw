@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiRoutes } from 'config/apiRoutes';
 
 export interface GetProductsParams {
   title?: string;
@@ -16,7 +17,7 @@ export interface Products {
 }
 
 export async function getProducts(params: GetProductsParams): Promise<Products[]> {
-  const response = await axios.get<Products[]>('https://api.escuelajs.co/api/v1/products', {
+  const response = await axios.get<Products[]>(apiRoutes.products, {
     params,
   });
   return response.data;

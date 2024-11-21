@@ -1,0 +1,32 @@
+.filter {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  
+.priceRange {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+  
+.rc-slider {
+  margin: 20px 0;
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+.button {
+  flex: 0 0 18%;
+  max-width: 18%;
+}
+
+.title {
+  padding-right: 10px;
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+  

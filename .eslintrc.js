@@ -32,7 +32,7 @@ module.exports = {
         'react/prop-types': 'off',
         "import/no-unresolved": "error",
         "@typescript-eslint/no-empty-interface": "off",
-        'no-console': ['error', { allow: ['error'] }],
+        // 'no-console': ['error', { allow: ['error'] }],
         'import/order': [
             'error',
             {

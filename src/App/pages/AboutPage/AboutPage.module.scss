@@ -1,0 +1,30 @@
+.aboutContainer {
+    padding: 40px;
+  }
+  .centered {
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 60px;
+  }
+  
+  .image {
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .textContainer {
+    max-width: 45%;
+  }
+  
+  .text {
+    margin-bottom: 24px;
+  }
+  

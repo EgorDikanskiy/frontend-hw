@@ -1,0 +1,19 @@
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    padding-top: 40px;
+
+    &__loader {
+        height: 10vh !important; 
+        display: block !important;
+        padding-left: 50%;
+    }
+}
+
+.title {
+    padding-top: 36px;
+    text-align: center;
+}
+
+

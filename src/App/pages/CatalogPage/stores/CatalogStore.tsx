@@ -77,6 +77,11 @@ class CatalogStore {
     this.syncCategoryWithUrl(navigate);
   }
 
+  // Установка диапазона цен и перезагрузка данных
+  setPriceRange(min: number, max: number) {
+    this.queryModel.setPriceRange(min, max);
+  }
+
   // Метод для загрузки всех данных и управления пагинацией
   async fetchData() {
     this.loading = true;
@@ -113,9 +118,9 @@ class CatalogStore {
   }
 
   async fetchTotalItemsCount() {
-    const { title, categoryId } = this.queryModel.getParamsForApi();
+    const { title, categoryId, price_min, price_max } = this.queryModel.getParamsForApi();
     try {
-      const filteredItems = await getProducts({ title, categoryId });
+      const filteredItems = await getProducts({ title, categoryId, price_min, price_max });
       runInAction(() => {
         this.totalItemsCount = filteredItems.length;
       });
