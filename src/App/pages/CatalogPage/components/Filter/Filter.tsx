@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React, { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-// import { updateQueryParams } from 'config/updateQueryParams';
+import { updateQueryParams } from 'config/updateQueryParams';
 import { useCatalogStore } from '../../CatalogStoreContext';
 
 import MultiDropdown, { Option } from '../MultiDropdown';
-// import PriceFilter from '../PriceFilter';
+import PriceFilter from '../PriceFilter';
 import Search from '../Search';
 import styles from './Files.module.scss';
 
@@ -13,11 +13,10 @@ const Filter = observer(() => {
   const itemsStore = useCatalogStore();
   const navigate = useNavigate();
   const location = useLocation();
-  // const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    itemsStore.initializeFilter(new URLSearchParams(location.search), navigate);
-  }, [location.search, itemsStore, navigate]);
+    itemsStore.initializeFilter(new URLSearchParams(location.hash), navigate);
+  }, [location.hash, itemsStore, navigate]);
 
   const handleCategoryChange = useCallback(
     (selectedOptions: Option[]) => {
@@ -31,11 +30,11 @@ const Filter = observer(() => {
     return values.length === 0 ? 'Filter by categories' : values.map(({ value }) => value).join(', ');
   }, []);
 
-  // const handleApplyPriceFilter = (minPrice, maxPrice) => {
-  //   itemsStore.setPriceRange(minPrice, maxPrice); // Обновляем диапазон цен в сторе
-  //   updateQueryParams(navigate, { price_min: minPrice, price_max: maxPrice, page: 1 });
-  //   itemsStore.fetchData(); // Перезагружаем данные
-  // };
+  const handleApplyPriceFilter = (minPrice, maxPrice) => {
+    itemsStore.setPriceRange(minPrice, maxPrice); // Обновляем диапазон цен в сторе
+    updateQueryParams(navigate, { price_min: minPrice, price_max: maxPrice, page: 1 });
+    itemsStore.fetchData(); // Перезагружаем данные
+  };
 
   return (
     <div>
@@ -48,11 +47,11 @@ const Filter = observer(() => {
           onChange={handleCategoryChange}
           getTitle={getTitle}
         />
-        {/* <PriceFilter
+        <PriceFilter
           className={styles.filter__price}
           onApplyFilter={handleApplyPriceFilter}
           initialPriceRange={[itemsStore.queryModel.priceMin, itemsStore.queryModel.priceMax]}
-        /> */}
+        />
       </div>
     </div>
   );

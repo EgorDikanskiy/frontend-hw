@@ -1,12 +1,17 @@
 import classNames from 'classnames';
 import Slider from 'rc-slider';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import Button from 'components/Button';
 import styles from './PriceFilter.module.scss';
 
 const PriceFilter = ({ onApplyFilter, initialPriceRange, className }) => {
   const [tempPriceRange, setTempPriceRange] = useState(initialPriceRange);
+
+  // Синхронизация состояния с initialPriceRange при изменении props
+  useEffect(() => {
+    setTempPriceRange(initialPriceRange);
+  }, [initialPriceRange]);
 
   const handleSliderChange = (value) => {
     setTempPriceRange(value); // Обновляем локальное состояние

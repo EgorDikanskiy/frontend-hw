@@ -4,7 +4,7 @@ export const updateQueryParams = (
   navigate: NavigateFunction,
   params: Record<string, string | number | null | number[]>,
 ) => {
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = new URLSearchParams(window.location.hash);
 
   Object.keys(params).forEach((key) => {
     const value = params[key];
