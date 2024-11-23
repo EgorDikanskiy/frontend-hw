@@ -1,0 +1,40 @@
+@use 'styles/variables' as *;
+
+.login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid $secondary;
+    }
+
+    &__button {
+      max-width: 60%;
+      border-radius: 5px;
+      align-items: center;
+    }
+
+    &__button_container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    &__register {
+      color: $secondary;
+    }
+}

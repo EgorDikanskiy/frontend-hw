@@ -5,4 +5,8 @@ export const apiRoutes = {
   products: createApiRoute('products'),
   productById: (id: string | undefined) => createApiRoute(`products/${id}`),
   categories: createApiRoute('categories'),
+  login: createApiRoute('auth/login'),
+  profile: createApiRoute('auth/profile'),
+  refreshUserToken: createApiRoute('auth/refresh-token'),
+  users: createApiRoute('users'),
 };
