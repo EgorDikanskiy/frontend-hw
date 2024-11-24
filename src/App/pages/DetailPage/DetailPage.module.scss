@@ -10,6 +10,15 @@
     &__images {
         margin-right: 40px ;
     } 
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr; // Один столбец
+        gap: 15px; // Уменьшение расстояния между элементами
+
+        &__images {
+            margin-right: 0; // Убираем отступ справа, так как больше не нужно
+        }
+    }
 }
 
 .related__items {

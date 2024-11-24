@@ -1,0 +1,44 @@
+@use 'styles/variables' as *;
+
+.paymentPage {
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+  
+    .paymentForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+      .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $secondary;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+  
+      .payButton {
+        padding: 12px;
+  
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  

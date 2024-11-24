@@ -41,7 +41,7 @@ const Catalog: React.FC<CatalogProps> = observer(({ cards, lenght_info, count_al
                     subtitle={card?.description}
                     image={filterUrlImage(card?.images[0])}
                     contentSlot={'$' + card?.price}
-                    actionSlot="Add to Cart"
+                    actionSlot="More details"
                   ></Card>
                 </Link>
               </div>

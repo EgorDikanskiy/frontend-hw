@@ -24,31 +24,31 @@ const PriceFilter = ({ onApplyFilter, initialPriceRange, className }) => {
   return (
     <div className={classNames(className, styles.filter)}>
       <h3 className={styles.title}>Filter by Price</h3>
-      <Slider
-        trackStyle={{ backgroundColor: '#518581' }}
-        railStyle={{ backgroundColor: '#AD7E5C' }}
-        handleStyle={{
-          borderColor: 'black',
-          backgroundColor: '#518581',
-          boxShadow: '0 0 0 3px #518581',
-        }}
-        range
-        min={1}
-        max={1000}
-        value={tempPriceRange}
-        onChange={handleSliderChange}
-        step={1}
-        marks={{
-          1: '1',
-          1000: '1000',
-        }}
-      />
+      <div className={styles.rc_slider__container}>
+        <Slider
+          trackStyle={{ backgroundColor: '#518581' }}
+          railStyle={{ backgroundColor: '#AD7E5C' }}
+          handleStyle={{
+            borderColor: 'black',
+            backgroundColor: '#518581',
+            boxShadow: '0 0 0 3px #518581',
+          }}
+          range
+          min={1}
+          max={1000}
+          value={tempPriceRange}
+          onChange={handleSliderChange}
+          step={1}
+          marks={{
+            1: '1',
+            1000: '1000',
+          }}
+        />
+      </div>
       <div className={styles.priceRange}>
         <span>Price: ${tempPriceRange[0]}</span> - <span>${tempPriceRange[1]}</span>
       </div>
-      <Button className={styles.button} onClick={handleApplyClick}>
-        Apply Filter
-      </Button>
+      <Button onClick={handleApplyClick}>Apply Filter</Button>
     </div>
   );
 };

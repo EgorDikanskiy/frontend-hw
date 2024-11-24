@@ -44,7 +44,6 @@ class QueryModel {
   setPriceRange(min: number, max: number) {
     this.priceMin = min;
     this.priceMax = max;
-    console.log(this.priceMin, this.priceMax);
   }
 }
 

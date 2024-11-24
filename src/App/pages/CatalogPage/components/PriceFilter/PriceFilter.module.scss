@@ -11,22 +11,30 @@
   padding-right: 20px;
   flex: 0 0 20%;
   max-width: 20%;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 }
   
-.rc-slider {
+.rc_slider__container {
   margin: 20px 0;
-  flex: 0 0 60%;
-  max-width: 60%;
-}
+  flex: 0 0 47%;
+  max-width: 47%;
 
-.button {
-  flex: 0 0 18%;
-  max-width: 18%;
+  @media (max-width: 768px) {
+    flex: 0 0 59%;
+    max-width: 59%;
+  }
 }
 
 .title {
   padding-right: 10px;
   flex: 0 0 15%;
   max-width: 15%;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
   
