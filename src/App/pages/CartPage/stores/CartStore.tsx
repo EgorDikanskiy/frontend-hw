@@ -8,7 +8,7 @@ export interface CartItem {
   image: string;
 }
 
-class CartStore {
+export class CartStore {
   cart: CartItem[] = [];
 
   constructor() {

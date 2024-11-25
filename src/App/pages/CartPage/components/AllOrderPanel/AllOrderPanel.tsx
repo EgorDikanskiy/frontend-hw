@@ -1,11 +1,10 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import { useCartStore } from '../../context/CartContext';
 import styles from './AllOrderPanel.module.scss';
 
-const AllOrderPanel = observer(() => {
+const AllOrderPanel = () => {
   const cartStore = useCartStore();
   const { clearCart, totalPrice, totalItems } = cartStore;
 
@@ -23,6 +22,6 @@ const AllOrderPanel = observer(() => {
       </div>
     </div>
   );
-});
+};
 
 export default AllOrderPanel;

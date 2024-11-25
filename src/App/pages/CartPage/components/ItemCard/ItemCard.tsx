@@ -1,11 +1,10 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import { useCartStore } from '../../context/CartContext';
 import styles from './Item.module.scss';
 
-const ItemCard = observer(() => {
+const ItemCard = () => {
   const cartStore = useCartStore();
   const { cart, removeFromCart, updateQuantity } = cartStore;
 
@@ -46,6 +45,6 @@ const ItemCard = observer(() => {
       ))}
     </div>
   );
-});
+};
 
 export default ItemCard;

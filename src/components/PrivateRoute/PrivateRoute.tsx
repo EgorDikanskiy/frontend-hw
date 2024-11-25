@@ -10,9 +10,10 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = observer(({ children }) => {
   const authStore = useAuthStore();
-  if (authStore.loading) return <Loader />;
+  const { loading, user } = authStore;
+  if (loading) return <Loader />;
 
-  return authStore.user ? <>{children}</> : <Navigate to="/login" />;
+  return user ? <>{children}</> : <Navigate to="/login" />;
 });
 
 export default PrivateRoute;

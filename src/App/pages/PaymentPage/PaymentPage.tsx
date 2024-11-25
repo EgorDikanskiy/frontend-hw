@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
-import CartStore from '../CartPage/stores/CartStore';
+import { useCartStore } from '../CartPage/context/CartContext';
 import styles from './PaymentPage.module.scss';
 
-const cartStore = new CartStore();
-
 const PaymentPage: React.FC = observer(() => {
+  const cartStore = useCartStore();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
