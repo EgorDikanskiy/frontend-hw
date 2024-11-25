@@ -1,11 +1,12 @@
 import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
 import Slider from 'rc-slider';
 import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
 import Button from 'components/Button';
 import styles from './PriceFilter.module.scss';
 
-const PriceFilter = ({ onApplyFilter, initialPriceRange, className }) => {
+const PriceFilter = observer(({ onApplyFilter, initialPriceRange, className }) => {
   const [tempPriceRange, setTempPriceRange] = useState(initialPriceRange);
 
   // Синхронизация состояния с initialPriceRange при изменении props
@@ -51,6 +52,6 @@ const PriceFilter = ({ onApplyFilter, initialPriceRange, className }) => {
       <Button onClick={handleApplyClick}>Apply Filter</Button>
     </div>
   );
-};
+});
 
 export default PriceFilter;

@@ -30,11 +30,14 @@ const Filter = observer(() => {
     return values.length === 0 ? 'Filter by categories' : values.map(({ value }) => value).join(', ');
   }, []);
 
-  const handleApplyPriceFilter = (minPrice, maxPrice) => {
-    itemsStore.setPriceRange(minPrice, maxPrice); // Обновляем диапазон цен в сторе
-    updateQueryParams(navigate, { price_min: minPrice, price_max: maxPrice, page: 1 });
-    itemsStore.fetchData(); // Перезагружаем данные
-  };
+  const handleApplyPriceFilter = useCallback(
+    (minPrice: number, maxPrice: number) => {
+      itemsStore.setPriceRange(minPrice, maxPrice); // Обновляем диапазон цен в сторе
+      updateQueryParams(navigate, { price_min: minPrice, price_max: maxPrice, page: 1 });
+      itemsStore.fetchData(); // Перезагружаем данные
+    },
+    [itemsStore, navigate],
+  );
 
   return (
     <div>

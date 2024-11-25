@@ -10,12 +10,20 @@ const RegisterForm = observer(() => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const [avatar, setAvatar] = useState('');
   const navigate = useNavigate();
   const authStore = useAuthStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please try again.');
+      return;
+    }
+
     try {
       await authStore.register(name, email, password, avatar);
       alert('Registration successful! You are now logged in.');
@@ -36,6 +44,10 @@ const RegisterForm = observer(() => {
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
+  };
+
+  const handleConfirmPasswordChange = (value: string) => {
+    setConfirmPassword(value);
   };
 
   const handleAvatarChange = (value: string) => {
@@ -75,6 +87,19 @@ const RegisterForm = observer(() => {
             />
           </label>
         </div>
+        <div>
+          <label>
+            Confirm Password:
+            <Input
+              className={styles.register__input}
+              type="password"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+          </label>
+        </div>
+        {error && <div className={styles.register__error}>{error}</div>}
         <div>
           <label>
             Avatar URL:

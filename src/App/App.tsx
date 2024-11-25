@@ -22,18 +22,18 @@ function App() {
           <Route path={routerUrls.productDetail.mask} element={<DetailPage />} />
           <Route path={routerUrls.categories.mask} element={<CategoriesPage />} />
           <Route path={routerUrls.about_us.mask} element={<AboutPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path={routerUrls.cart.mask} element={<CartPage />} />
+          <Route path={routerUrls.payment.mask} element={<PaymentPage />} />
+          <Route path={routerUrls.login.mask} element={<Login />} />
           <Route
-            path="/profile"
+            path={routerUrls.profile.mask}
             element={
               <PrivateRoute>
                 <Profile />
               </PrivateRoute>
             }
           />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path={routerUrls.register.mask} element={<RegisterForm />} />
           <Route path="*" element={<Navigate to={routerUrls.catalog.mask} replace={true} />} />
         </Routes>
       </RootLayout>

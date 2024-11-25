@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import Text from 'components/Text';
-import { cartStore } from '../../../CartPage/stores/CartStore';
+import { useCartStore } from '../../../CartPage/context/CartContext';
 import styles from './ItemInfo.module.scss';
 
 export type ItemInfoProps = {
@@ -14,8 +15,10 @@ export type ItemInfoProps = {
 };
 
 const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, id, image }) => {
+  const cartStore = useCartStore();
   const handleAddToCart = () => {
     cartStore.addToCart({ id, name, price, image, quantity: 1 });
+    alert('The product has been added to the cart');
   };
 
   return (
@@ -30,7 +33,9 @@ const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, 
         {'$' + price}
       </Text>
       <div className={styles.buttons}>
-        <Button>Buy Now</Button>
+        <Link to={'/payment'}>
+          <Button>Buy Now</Button>
+        </Link>
         <Button onClick={handleAddToCart} className={styles.buttons__cart}>
           Add to Cart
         </Button>

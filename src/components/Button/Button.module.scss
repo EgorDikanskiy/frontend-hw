@@ -39,4 +39,9 @@
   &__loader svg path {
     fill: white;
   }
+
+  @media (max-width: 768px) {
+    height: 40px;
+    font-size: 14px;
+  }
 }

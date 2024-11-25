@@ -16,4 +16,24 @@ export const routerUrls = {
     mask: '/about_us',
     create: () => `/about_us`,
   },
+  cart: {
+    mask: '/cart',
+    create: () => `/cart`,
+  },
+  payment: {
+    mask: '/payment',
+    create: () => `/payment`,
+  },
+  login: {
+    mask: '/login',
+    create: () => `/login`,
+  },
+  profile: {
+    mask: '/profile',
+    create: () => `/profile`,
+  },
+  register: {
+    mask: '/register',
+    create: () => `/register`,
+  },
 };

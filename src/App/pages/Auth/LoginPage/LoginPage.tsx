@@ -16,10 +16,10 @@ const Login: React.FC = observer(() => {
     e.preventDefault();
     try {
       await authStore.login(email, password);
-      alert('Вы успешно вошли в систему!');
+      alert('You have successfully logged in!');
       navigate('/profile');
     } catch (error) {
-      alert('Ошибка авторизации. Проверьте введённые данные.' + error);
+      alert('Authorization error. Check the entered data.' + error);
       navigate('/login');
     }
   };

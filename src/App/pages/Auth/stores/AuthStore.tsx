@@ -22,8 +22,7 @@ export class AuthStore {
 
   async register(name: string, email: string, password: string, avatar: string) {
     try {
-      const { data } = await register(name, email, password, avatar);
-      console.log(data);
+      await register(name, email, password, avatar);
       // После регистрации можно сразу войти:
       await this.login(email, password);
     } catch (err) {
@@ -38,7 +37,7 @@ export class AuthStore {
         const profile = await getProfile(this.accessToken);
         this.setUser(profile);
       } catch (error) {
-        console.error('Ошибка при загрузке пользователя:', error);
+        console.error('Error loading the user:', error);
         this.logout();
       }
     }
@@ -54,7 +53,7 @@ export class AuthStore {
       const profile = await getProfile(data.access_token);
       this.setUser(profile);
     } catch (error) {
-      console.error('Ошибка авторизации:', error);
+      console.error('Authorization error:', error);
       throw error;
     } finally {
       this.setLoading(false);
@@ -86,7 +85,7 @@ export class AuthStore {
       const data = await refreshToken(this.refreshToken);
       this.setTokens(data.access_token, data.refresh_token);
     } catch (error) {
-      console.error('Ошибка обновления токена:', error);
+      console.error('Token update error:', error);
       this.logout();
     }
   }

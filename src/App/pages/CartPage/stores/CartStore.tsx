@@ -69,4 +69,4 @@ class CartStore {
   }
 }
 
-export const cartStore = new CartStore();
+export default CartStore;

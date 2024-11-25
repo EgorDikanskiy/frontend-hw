@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
+import Loader from 'components/Loader';
 import { useAuthStore } from '../context/AuthContext';
 import styles from './Profile.module.scss';
 
@@ -15,7 +16,7 @@ const Profile: React.FC = observer(() => {
     navigate('/catalog');
   };
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <Loader />;
 
   return (
     <div className={styles.profile}>
