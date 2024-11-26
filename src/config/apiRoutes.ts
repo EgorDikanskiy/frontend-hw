@@ -9,4 +9,5 @@ export const apiRoutes = {
   profile: createApiRoute('auth/profile'),
   refreshUserToken: createApiRoute('auth/refresh-token'),
   users: createApiRoute('users'),
+  upload: createApiRoute('files/upload'),
 };

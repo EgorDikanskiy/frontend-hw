@@ -20,6 +20,40 @@ export class AuthStore {
     this.loadUserFromStorage();
   }
 
+  // Регистрация с загрузкой аватара
+  async registerWithAvatar(name: string, email: string, password: string, file: File | null) {
+    try {
+      let avatarUrl = '';
+
+      if (file) {
+        avatarUrl = await this.uploadAvatar(file); // Загрузка файла
+      }
+
+      await this.register(name, email, password, avatarUrl); // Регистрация
+    } catch (error) {
+      console.error('Registration with avatar failed:', error);
+      throw error;
+    }
+  }
+
+  // Загрузка файла аватара
+  async uploadAvatar(file: File): Promise<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('https://api.escuelajs.co/api/v1/files/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to upload avatar.');
+    }
+
+    const data = await response.json();
+    return data.location; // URL загруженного файла
+  }
+
   async register(name: string, email: string, password: string, avatar: string) {
     try {
       await register(name, email, password, avatar);
@@ -27,10 +61,10 @@ export class AuthStore {
       await this.login(email, password);
     } catch (err) {
       console.error('Registration failed:', err);
+      throw err;
     }
   }
 
-  // Загружаем пользователя из локального хранилища
   async loadUserFromStorage() {
     if (this.accessToken) {
       try {
@@ -43,7 +77,6 @@ export class AuthStore {
     }
   }
 
-  // Авторизация
   async login(email: string, password: string) {
     this.setLoading(true);
     try {
@@ -60,12 +93,10 @@ export class AuthStore {
     }
   }
 
-  // Устанавливаем пользователя
   setUser(user: User) {
     this.user = user;
   }
 
-  // Устанавливаем токены
   setTokens(accessToken: string, refreshToken: string) {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
@@ -74,7 +105,6 @@ export class AuthStore {
     localStorage.setItem('refresh_token', refreshToken);
   }
 
-  // Обновляем токен
   async refreshAccessToken() {
     if (!this.refreshToken) {
       this.logout();
@@ -90,7 +120,6 @@ export class AuthStore {
     }
   }
 
-  // Выход из системы
   logout = () => {
     this.user = null;
     this.accessToken = null;

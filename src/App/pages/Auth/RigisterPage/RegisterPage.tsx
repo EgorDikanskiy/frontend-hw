@@ -12,7 +12,8 @@ const RegisterForm = observer(() => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [avatar, setAvatar] = useState('');
+  const [file, setFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
   const authStore = useAuthStore();
 
@@ -24,34 +25,27 @@ const RegisterForm = observer(() => {
       return;
     }
 
+    setUploading(true);
     try {
-      await authStore.register(name, email, password, avatar);
+      await authStore.registerWithAvatar(name, email, password, file); // Используем метод AuthStore
       alert('Registration successful! You are now logged in.');
       navigate('/profile');
     } catch (err) {
       console.error('Registration failed:', err);
-      navigate('/register');
+      setError('Registration failed. Please try again.');
+    } finally {
+      setUploading(false);
     }
   };
 
-  const handleNameChange = (value: string) => {
-    setName(value);
-  };
-
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-  };
-
-  const handlePasswordChange = (value: string) => {
-    setPassword(value);
-  };
-
-  const handleConfirmPasswordChange = (value: string) => {
-    setConfirmPassword(value);
-  };
-
-  const handleAvatarChange = (value: string) => {
-    setAvatar(value);
+  const handleNameChange = (value: string) => setName(value);
+  const handleEmailChange = (value: string) => setEmail(value);
+  const handlePasswordChange = (value: string) => setPassword(value);
+  const handleConfirmPasswordChange = (value: string) => setConfirmPassword(value);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
   };
 
   return (
@@ -102,12 +96,13 @@ const RegisterForm = observer(() => {
         {error && <div className={styles.register__error}>{error}</div>}
         <div>
           <label>
-            Avatar URL:
-            <Input className={styles.register__input} type="url" value={avatar} onChange={handleAvatarChange} />
+            Avatar File:
+            <input className={styles.register__file_input} type="file" accept="image/*" onChange={handleFileChange} />
           </label>
         </div>
+        {uploading && <div className={styles.register__loading}>Uploading file...</div>}
         <div className={styles.register__button_container}>
-          <Button className={styles.register__button} type="submit">
+          <Button className={styles.register__button} type="submit" disabled={uploading}>
             Register
           </Button>
         </div>

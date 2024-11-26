@@ -27,3 +27,8 @@ export const register = async (name: string, email: string, password: string, av
   const response = await axios.post(apiRoutes.users, { name, email, password, avatar });
   return response.data;
 };
+
+export const upload = async (formData: FormData) => {
+  const response = await axios.post(apiRoutes.upload, { formData });
+  return response.data;
+};
