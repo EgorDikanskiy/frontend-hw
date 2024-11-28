@@ -7,7 +7,7 @@ import { useCatalogStore } from '../../CatalogStoreContext';
 import MultiDropdown, { Option } from '../MultiDropdown';
 import PriceFilter from '../PriceFilter';
 import Search from '../Search';
-import styles from './Files.module.scss';
+import styles from './Filter.module.scss';
 
 const Filter = observer(() => {
   const itemsStore = useCatalogStore();

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import { routerUrls } from 'config/routerUrls';
 import { useCartStore } from '../CartPage/context/CartContext';
 import styles from './PaymentPage.module.scss';
 
@@ -41,7 +42,7 @@ const PaymentPage: React.FC = observer(() => {
     setTimeout(() => {
       cartStore.clearCart(); // Очистить корзину после успешной оплаты
       alert('Оплата прошла успешно! Спасибо за покупку.');
-      navigate('/catalog'); // Редирект после оплаты
+      navigate(routerUrls.catalog.mask); // Редирект после оплаты
     }, 3000);
   };
 

@@ -32,6 +32,10 @@ module.exports = {
         'react/prop-types': 'off',
         "import/no-unresolved": "error",
         "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "off",
+            { argsIgnorePattern: "^_" },
+        ],
         // 'no-console': ['error', { allow: ['error'] }],
         'import/order': [
             'error',

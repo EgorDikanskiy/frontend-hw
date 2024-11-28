@@ -1,7 +1,9 @@
+@use 'styles/mixin' as *;
+
 .aboutContainer {
   padding: 40px;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     padding: 20px; // Уменьшаем отступы на мобильных устройствах
 }
 }
@@ -15,7 +17,7 @@
   justify-content: space-between;
   margin-top: 60px;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     flex-direction: column; // Располагаем элементы в колонку
     align-items: flex-start; // Выравниваем элементы по левому краю
     margin-top: 30px; // Уменьшаем отступ сверху
@@ -29,7 +31,7 @@
   margin-right: 20px;
   margin-bottom: 24px;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     max-width: 100%; // Изображение занимает всю ширину
     margin-right: 0; // Убираем правый отступ
     margin-bottom: 20px; // Уменьшаем нижний отступ
@@ -39,7 +41,7 @@
 .textContainer {
   max-width: 45%;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     max-width: 100%; // Текстовый блок занимает всю ширину
   }
 }
@@ -47,7 +49,7 @@
 .text {
   margin-bottom: 24px;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     margin-bottom: 16px; // Уменьшаем отступ между абзацами
   }
 }

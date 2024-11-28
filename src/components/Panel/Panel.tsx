@@ -1,40 +1,41 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { useNavigate, Link, useLocation, useMatch } from 'react-router-dom';
+import { routerUrls } from 'config/routerUrls';
 import { useAuthStore } from '../../App/pages/Auth/context/AuthContext';
 import styles from './Panel.module.scss';
 
-const Panel = observer(() => {
+const getProfileColor = () => {
+  switch (location.pathname) {
+    case routerUrls.login.mask:
+      return '#518581';
+    case routerUrls.register.mask:
+      return '#518581';
+    case routerUrls.profile.mask:
+      return '#518581';
+    default:
+      return '#151411';
+  }
+};
+
+const Panel: React.FC = observer(() => {
   const navigate = useNavigate();
-  const location = useLocation();
   const authStore = useAuthStore();
+  const isCartActive = useMatch(routerUrls.cart.mask);
 
   const { user } = authStore;
 
-  const handleProfileClick = () => {
-    if (!user) {
-      navigate('/login'); // Если пользователь не авторизован, отправить на страницу входа
-    } else {
-      navigate('/profile'); // Если авторизован, отправить на страницу профиля
-    }
-  };
-
-  const getProfileColor = () => {
-    switch (location.pathname) {
-      case '/login':
-        return '#518581';
-      case '/register':
-        return '#518581';
-      case '/profile':
-        return '#518581';
-      default:
-        return '#151411';
-    }
-  };
-
   const getCartColor = () => {
-    return location.pathname === '/cart' ? '#518581' : '#151411';
+    return isCartActive ? '#518581' : '#151411';
   };
+
+  const handleProfileClick = useCallback(() => {
+    if (!user) {
+      navigate(routerUrls.login.mask);
+    } else {
+      navigate(routerUrls.profile.mask);
+    }
+  }, [navigate, user]);
 
   const profileColor = getProfileColor();
   const cartColor = getCartColor();

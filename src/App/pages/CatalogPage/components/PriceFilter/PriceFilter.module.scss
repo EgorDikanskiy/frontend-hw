@@ -1,3 +1,5 @@
+@use 'styles/mixin' as *;
+
 .filter {
     margin-bottom: 20px;
     display: flex;
@@ -12,7 +14,7 @@
   flex: 0 0 20%;
   max-width: 20%;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     font-size: 10px;
   }
 }
@@ -22,7 +24,7 @@
   flex: 0 0 47%;
   max-width: 47%;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     flex: 0 0 59%;
     max-width: 59%;
   }
@@ -33,7 +35,7 @@
   flex: 0 0 15%;
   max-width: 15%;
 
-  @media (max-width: 768px) {
+  @include tablet_max {
     display: none;
   }
 }

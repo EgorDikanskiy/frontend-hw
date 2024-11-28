@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { login, getProfile, refreshToken, register } from 'api/auth';
+import { login, getProfile, refreshToken, register, upload } from 'api/auth';
 
 export interface User {
   id: number;
@@ -41,10 +41,7 @@ export class AuthStore {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await fetch('https://api.escuelajs.co/api/v1/files/upload', {
-      method: 'POST',
-      body: formData,
-    });
+    const response = await upload(formData);
 
     if (!response.ok) {
       throw new Error('Failed to upload avatar.');

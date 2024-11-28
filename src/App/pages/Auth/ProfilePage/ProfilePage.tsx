@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Loader from 'components/Loader';
+import { routerUrls } from 'config/routerUrls';
 import { useAuthStore } from '../context/AuthContext';
 import styles from './Profile.module.scss';
 
@@ -13,7 +14,7 @@ const Profile: React.FC = observer(() => {
 
   const handleLogout = () => {
     logout();
-    navigate('/catalog');
+    navigate(routerUrls.catalog.mask);
   };
 
   if (!user) return <Loader />;

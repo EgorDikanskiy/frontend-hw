@@ -1,34 +1,33 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useMatch } from 'react-router-dom';
+import { routerUrls } from 'config/routerUrls';
 import styles from './Nav.module.scss';
 
 const Navigation = () => {
-  const location = useLocation(); // Хук для получения текущего пути
-
   return (
     <nav>
       <ul className={styles.navigation}>
         <li
           className={classNames(styles.navigation__item, {
-            [styles.active]: location.pathname === '/catalog',
+            [styles.active]: useMatch(routerUrls.catalog.mask),
           })}
         >
-          <Link to="/catalog">Products</Link>
+          <Link to={routerUrls.catalog.mask}>Products</Link>
         </li>
         <li
           className={classNames(styles.navigation__item, {
-            [styles.active]: location.pathname === '/categories',
+            [styles.active]: useMatch(routerUrls.categories.mask),
           })}
         >
-          <Link to="/categories">Categories</Link>
+          <Link to={routerUrls.categories.mask}>Categories</Link>
         </li>
         <li
           className={classNames(styles.navigation__item, {
-            [styles.active]: location.pathname === '/about_us',
+            [styles.active]: useMatch(routerUrls.about_us.mask),
           })}
         >
-          <Link to="/about_us">About us</Link>
+          <Link to={routerUrls.about_us.mask}>About us</Link>
         </li>
       </ul>
     </nav>

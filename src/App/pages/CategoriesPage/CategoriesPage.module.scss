@@ -1,3 +1,5 @@
+@use 'styles/mixin' as *;
+
 .categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -10,13 +12,13 @@
         padding-left: 50%;
     }
 
-    @media (max-width: 1024px) {
+    @include tablet_max {
         grid-template-columns: repeat(2, 1fr); // Две колонки на планшетах
         gap: 40px; // Настройка расстояния между элементами
         padding-top: 30px; // Корректировка отступа
     }
 
-    @media (max-width: 680px) {
+    @include mobile_max {
         grid-template-columns: 1fr; // Один столбец на мобильных устройствах
         gap: 20px; // Еще меньшее расстояние, если нужно
     }

@@ -4,6 +4,8 @@
         top: 50%;
         z-index: 100;
         transform: translateY(-50%);
+        cursor: pointer;
+        
 
         &_left {
             left: -15px;

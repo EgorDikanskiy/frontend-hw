@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import { routerUrls } from 'config/routerUrls';
 import { useAuthStore } from '../context/AuthContext';
 import styles from './Login.module.scss';
 
@@ -17,10 +18,10 @@ const Login: React.FC = observer(() => {
     try {
       await authStore.login(email, password);
       alert('You have successfully logged in!');
-      navigate('/profile');
-    } catch (error) {
-      alert('Authorization error. Check the entered data.' + error);
-      navigate('/login');
+      navigate(routerUrls.profile.mask);
+    } catch (_error) {
+      alert('Authorization error. Check the entered data.');
+      navigate(routerUrls.login.mask);
     }
   };
 
@@ -55,7 +56,7 @@ const Login: React.FC = observer(() => {
           <Button className={styles.login__button} type="submit" disabled={authStore.loading}>
             {authStore.loading ? 'Loading...' : 'Login'}
           </Button>
-          <Link to={'/register'}>
+          <Link to={routerUrls.register.mask}>
             <p className={styles.login__register}>Register</p>
           </Link>
         </div>

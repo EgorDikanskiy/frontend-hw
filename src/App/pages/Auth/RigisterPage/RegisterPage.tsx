@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import { routerUrls } from 'config/routerUrls';
 import { useAuthStore } from '../context/AuthContext';
 import styles from './Register.module.scss';
 
@@ -29,7 +30,7 @@ const RegisterForm = observer(() => {
     try {
       await authStore.registerWithAvatar(name, email, password, file); // Используем метод AuthStore
       alert('Registration successful! You are now logged in.');
-      navigate('/profile');
+      navigate(routerUrls.profile.mask);
     } catch (err) {
       console.error('Registration failed:', err);
       setError('Registration failed. Please try again.');

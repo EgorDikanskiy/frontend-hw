@@ -24,8 +24,8 @@ class CatalogStore {
 
   // Геттер для списка опций категорий
   get categoryOptions() {
-    if (this.loading) return []; // Если данные всё ещё загружаются
-    if (this.error) return []; // Если произошла ошибка
+    if (this.loading) return [];
+    if (this.error) return [];
 
     return this.categories.map((category) => ({
       id: category.id,
@@ -45,7 +45,7 @@ class CatalogStore {
   syncCategoryFromUrl(searchParams: URLSearchParams) {
     const categoryId = searchParams.get('categoryId');
     const parsedCategoryId = categoryId ? Number(categoryId) : null;
-    this.setSelectedCategory(parsedCategoryId, () => {}); // Пустая функция, т.к. navigate не требуется
+    this.setSelectedCategory(parsedCategoryId, () => {});
   }
 
   setSearchQuery(query: string, navigate: NavigateFunction) {

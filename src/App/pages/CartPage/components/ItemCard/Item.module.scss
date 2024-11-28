@@ -1,3 +1,5 @@
+@use 'styles/mixin' as *;
+
 .cartItem {
 	display: flex;
 	align-items: center;
@@ -26,7 +28,7 @@
 			font-weight: bold;
 			color: #333;
 
-			@media (max-width: 768px) {
+			@include tablet_max {
 				font-size: 0.8rem;
 			}
 		}
@@ -35,7 +37,7 @@
 			font-size: 1rem;
 			color: #777;
 
-			@media (max-width: 768px) {
+			@include tablet_max {
 				font-size: 0.8rem;
 			}
 		}
@@ -81,8 +83,9 @@
 	width: 100%;
 	display: flex;
 	align-items: center;
+	padding-left: 20px;
 
-	@media (max-width: 768px) {
+	@include tablet_max {
 		display: block;
 	}
 }

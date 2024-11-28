@@ -1,4 +1,5 @@
 @use 'styles/variables' as *;
+@use 'styles/mixin' as *;
 
 .item {
     display: grid;
@@ -11,7 +12,7 @@
         margin-right: 40px ;
     } 
 
-    @media (max-width: 768px) {
+    @include tablet_max {
         grid-template-columns: 1fr; // Один столбец
         gap: 15px; // Уменьшение расстояния между элементами
 

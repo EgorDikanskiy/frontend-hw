@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button';
+import { filterUrlImage } from 'utils/filterUrlImage';
 import { useCartStore } from '../../context/CartContext';
 import styles from './Item.module.scss';
 
@@ -22,7 +23,7 @@ const ItemCard = observer(() => {
       {cart.map((item) => (
         <div className={styles.cartItem} key={item.id}>
           <Link to={`/detail/${item.id}`}>
-            <img className={styles.itemImage} src={item.image} alt={item.name} />
+            <img className={styles.itemImage} src={filterUrlImage(item.image)} alt={item.name} />
           </Link>
           <div className={styles.itemEditButtons}>
             <div className={styles.itemDetails}>

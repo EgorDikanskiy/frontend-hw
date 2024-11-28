@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
 import Loader from 'components/Loader';
@@ -13,13 +13,9 @@ const categoriesStore = new CategoriesStore();
 const CategoriesPage = observer(() => {
   const { displayedCategories, loadAllCategories, displayNextBatch, hasMoreCategories } = categoriesStore;
 
-  const fetchCategories = useCallback(() => {
+  useEffect(() => {
     loadAllCategories();
   }, [loadAllCategories]);
-
-  useEffect(() => {
-    fetchCategories();
-  }, [fetchCategories]);
 
   return (
     <div className="container">

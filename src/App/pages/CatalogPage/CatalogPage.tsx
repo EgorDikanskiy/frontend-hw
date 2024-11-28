@@ -21,6 +21,7 @@ const CatalogPageContent = observer(() => {
 
   useEffect(() => {
     fetchData();
+    window.scrollTo(0, 0);
   }, [fetchData]);
 
   return (
@@ -34,9 +35,7 @@ const CatalogPageContent = observer(() => {
         {catalogStore.loading && <Loader />}
         {catalogStore.error && <p>{catalogStore.error}</p>}
       </div>
-      <div className={styles.footer}>
-        <Pagination />
-      </div>
+      <div className={styles.footer}>{catalogStore.totalItemsCount && <Pagination />}</div>
     </div>
   );
 });

@@ -39,10 +39,6 @@ class CategoriesStore {
 
   // Отображает следующую порцию категорий с задержкой
   displayNextBatch = () => {
-    if (!this.hasMoreCategories || this.loading) return;
-
-    this.loading = true;
-
     // Искусственная задержка
     setTimeout(() => {
       const nextBatch = this.categories.slice(this.offset, this.offset + this.itemsPerLoad);

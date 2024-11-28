@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import classNames from 'classnames';
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from 'components/Nav';
 import Panel from 'components/Panel';
+import { routerUrls } from 'config/routerUrls';
 import logo from '../../assets/logo.png';
 import styles from './Header.module.scss';
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((isMenuOpen) => !isMenuOpen);
+  }, [setMenuOpen]);
 
   return (
     <header className={styles.header}>
@@ -21,11 +24,11 @@ const Header = () => {
             <span className={styles.burger__line}></span>
           </button>
         </div>
-        <div className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`}>
+        <div className={classNames(styles.menu, { [styles.menu_open]: isMenuOpen })}>
           <div className={styles.header__inner}>
-            <a href="/catalog">
+            <Link to={routerUrls.catalog.mask}>
               <img src={logo} alt="Logo" />
-            </a>
+            </Link>
             <Navigation />
             <Panel />
           </div>
