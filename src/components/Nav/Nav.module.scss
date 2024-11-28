@@ -10,10 +10,18 @@
         font-weight: 400;
         transform: translateY(3px);
 
+        a {
+            color: black;
+        }
+
         &.active {
             color: $accent;
             border-bottom: 3px solid;
             font-weight: 600;
+
+            a {
+                color: $accent;
+            }
         }
     }
 }

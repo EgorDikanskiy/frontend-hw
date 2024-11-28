@@ -16,7 +16,8 @@
       "config": ["config/*"],
       "styles": ["styles/*"],
       "utils": ["utils/*"],
-      "api": ["api/*"]
+      "api": ["api/*"],
+      "stores": ["stores/*"]
     },
     },
     "include": ["src", "eslint.config.js"],

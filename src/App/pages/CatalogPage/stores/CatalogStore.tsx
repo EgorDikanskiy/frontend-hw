@@ -24,8 +24,8 @@ class CatalogStore {
 
   // Геттер для списка опций категорий
   get categoryOptions() {
-    if (this.loading) return []; // Если данные всё ещё загружаются
-    if (this.error) return []; // Если произошла ошибка
+    if (this.loading) return [];
+    if (this.error) return [];
 
     return this.categories.map((category) => ({
       id: category.id,
@@ -45,7 +45,7 @@ class CatalogStore {
   syncCategoryFromUrl(searchParams: URLSearchParams) {
     const categoryId = searchParams.get('categoryId');
     const parsedCategoryId = categoryId ? Number(categoryId) : null;
-    this.setSelectedCategory(parsedCategoryId, () => {}); // Пустая функция, т.к. navigate не требуется
+    this.setSelectedCategory(parsedCategoryId, () => {});
   }
 
   setSearchQuery(query: string, navigate: NavigateFunction) {
@@ -75,6 +75,11 @@ class CatalogStore {
 
     // Обновляем URL, если значение categoryId меняется
     this.syncCategoryWithUrl(navigate);
+  }
+
+  // Установка диапазона цен и перезагрузка данных
+  setPriceRange(min: number, max: number) {
+    this.queryModel.setPriceRange(min, max);
   }
 
   // Метод для загрузки всех данных и управления пагинацией
@@ -113,9 +118,9 @@ class CatalogStore {
   }
 
   async fetchTotalItemsCount() {
-    const { title, categoryId } = this.queryModel.getParamsForApi();
+    const { title, categoryId, price_min, price_max } = this.queryModel.getParamsForApi();
     try {
-      const filteredItems = await getProducts({ title, categoryId });
+      const filteredItems = await getProducts({ title, categoryId, price_min, price_max });
       runInAction(() => {
         this.totalItemsCount = filteredItems.length;
       });

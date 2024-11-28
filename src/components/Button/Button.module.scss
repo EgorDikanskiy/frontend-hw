@@ -1,10 +1,12 @@
 @use 'styles/variables' as *;
+@use 'styles/mixin' as *;
 
 .button {
   height: 52px;
   background: $accent;
   display: flex;
   align-items: center;
+  text-align: center;
   cursor: pointer;
   border: none;
 
@@ -37,5 +39,10 @@
 
   &__loader svg path {
     fill: white;
+  }
+
+  @include tablet_max {
+    height: 40px;
+    font-size: 14px;
   }
 }

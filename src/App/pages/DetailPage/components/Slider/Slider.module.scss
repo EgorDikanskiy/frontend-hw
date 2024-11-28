@@ -4,13 +4,15 @@
         top: 50%;
         z-index: 100;
         transform: translateY(-50%);
+        cursor: pointer;
+        
 
         &_left {
-            left: -15px;
+            left: -2%;
         }
 
         &_right {
-            right: 15px;
+            right: -2%;
         }
 
         &_disabled{

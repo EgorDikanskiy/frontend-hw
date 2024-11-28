@@ -1,0 +1,42 @@
+@use 'styles/mixin' as *;
+
+.filter {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  
+.priceRange {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex: 0 0 20%;
+  max-width: 20%;
+
+  @include tablet_max {
+    font-size: 10px;
+  }
+}
+  
+.rc_slider__container {
+  margin: 20px 0;
+  flex: 0 0 47%;
+  max-width: 47%;
+
+  @include tablet_max {
+    flex: 0 0 59%;
+    max-width: 59%;
+  }
+}
+
+.title {
+  padding-right: 10px;
+  flex: 0 0 15%;
+  max-width: 15%;
+
+  @include tablet_max {
+    display: none;
+  }
+}
+  

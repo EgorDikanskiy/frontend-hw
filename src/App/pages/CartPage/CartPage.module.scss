@@ -1,0 +1,19 @@
+.cartPage {
+	padding: 20px;
+	background-color: #f9f9f9;
+	font-family: 'Arial', sans-serif;
+
+	.title {
+		font-size: 1.5rem;
+		font-weight: bold;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.emptyCart {
+		text-align: center;
+		font-size: 1.2rem;
+		color: #777;
+	}
+
+}

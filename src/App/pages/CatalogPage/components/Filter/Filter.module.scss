@@ -1,0 +1,29 @@
+.filter {
+    display: flex;
+    justify-content: space-between;
+    position: relative; // Гарантируем, что дочерние элементы будут позиционироваться внутри родителя
+
+    &__category {
+        flex: 0 0 30%;
+        max-width: 30%;
+        position: relative; // Устанавливаем позиционирование для работы с z-index
+        z-index: 2; // Устанавливаем более высокий z-index
+    }
+
+    &__price {
+        flex: 0 0 60%;
+        max-width: 60%;
+        position: relative; // Обеспечиваем позиционирование на случай необходимости z-index
+        z-index: 1; // Устанавливаем более низкий z-index
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 15px;
+
+        &__category, &__price {
+            flex: 0 0 auto;
+            max-width: 100%;
+        }
+    }
+}

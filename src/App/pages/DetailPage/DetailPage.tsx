@@ -23,6 +23,7 @@ const DetailPage = observer(() => {
 
   useEffect(() => {
     fetchData();
+    window.scrollTo(0, 0);
   }, [fetchData]);
 
   return (
@@ -48,7 +49,13 @@ const DetailPage = observer(() => {
           </button>
           <div className={styles.item}>
             <div className={styles.item__images}>{product.images && <DemoCarousel images={product.images} />}</div>
-            <ItemInfo title={product.title} description={product.description} price={product.price} />
+            <ItemInfo
+              name={product.title}
+              description={product.description}
+              price={product.price}
+              id={product.id}
+              image={product.images[0]}
+            />
           </div>
           <Text className={styles.subtitle} view="title" weight="bold">
             Related Items

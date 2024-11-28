@@ -1,19 +1,42 @@
-import React from 'react';
+import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Text from 'components/Text';
+import { routerUrls } from 'config/routerUrls';
+// import { useAuthStore } from '../../../Auth/context/AuthContext';
+// import { useCartStore } from '../../../CartPage/context/CartContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './ItemInfo.module.scss';
 
 export type ItemInfoProps = {
-  title?: string;
-  description?: string;
-  price?: number;
+  name: string;
+  description: string;
+  price: number;
+  id: number;
+  image: string;
 };
 
-const ItemInfo: React.FC<ItemInfoProps> = ({ title, description, price }) => {
+const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, id, image }) => {
+  const { authStore, cartStore } = useRootStore();
+  const { user } = authStore;
+  const [isInCart, setIsInCart] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    if (user) {
+      cartStore.addToCart({ id, name, price, image, quantity: 1 });
+      setIsInCart(true);
+    } else {
+      navigate(routerUrls.login.mask);
+    }
+  };
+
   return (
     <div>
       <Text view="title" weight="bold">
-        {title}
+        {name}
       </Text>
       <Text className={styles.item__description} view="p-20" color="secondary">
         {description}
@@ -22,11 +45,20 @@ const ItemInfo: React.FC<ItemInfoProps> = ({ title, description, price }) => {
         {'$' + price}
       </Text>
       <div className={styles.buttons}>
-        <Button>Buy Now</Button>
-        <Button className={styles.buttons__cart}>Add to Cart</Button>
+        <Link to={routerUrls.payment.mask}>
+          <Button>Buy Now</Button>
+        </Link>
+        <Button
+          onClick={handleAddToCart}
+          className={classNames(styles.buttons__cart, {
+            [styles.buttons__cart_active]: isInCart,
+          })}
+        >
+          {isInCart ? 'In Cart' : 'Add to Cart'}
+        </Button>
       </div>
     </div>
   );
-};
+});
 
 export default ItemInfo;
