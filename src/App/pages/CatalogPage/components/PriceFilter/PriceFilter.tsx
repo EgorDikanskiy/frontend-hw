@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-// import { observer } from 'mobx-react-lite';
 import Slider from 'rc-slider';
 import React, { useEffect, useState } from 'react';
 import 'rc-slider/assets/index.css';
