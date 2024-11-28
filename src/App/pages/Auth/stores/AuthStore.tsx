@@ -58,7 +58,7 @@ export class AuthStore {
     const data = await response.json();
     console.log(data.location);
     return data.location; // URL загруженного файла
-  }
+  };
 
   async register(name: string, email: string, password: string, avatar: string) {
     try {
