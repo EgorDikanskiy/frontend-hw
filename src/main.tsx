@@ -9,13 +9,7 @@ import './config/configureMobX';
 // import { CartProvider } from './App/pages/CartPage/context/CartContext';
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  // <AuthProvider>
-  //   <CartProvider>
   <RootStoreProvider>
     <App />
   </RootStoreProvider>,
-  //   </CartProvider>
-  // </AuthProvider>,
-  // </StrictMode>
 );

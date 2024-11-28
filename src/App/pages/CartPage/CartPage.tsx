@@ -1,11 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { useAuthStore } from '../Auth/context/AuthContext';
 import { useRootStore } from 'stores/RootStore';
 import AllOrderPanel from './components/AllOrderPanel';
 import ItemCard from './components/ItemCard';
-// import { useCartStore } from './context/CartContext';
 import styles from './CartPage.module.scss';
 
 const CartPage: React.FC = observer(() => {

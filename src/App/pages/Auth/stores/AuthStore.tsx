@@ -19,8 +19,8 @@ export class AuthStore {
 
   constructor(rootStore: RootStore) {
     makeAutoObservable(this);
-    this.loadUserFromStorage();
     this.rootStore = rootStore;
+    this.loadUserFromStorage();
   }
 
   // Регистрация с загрузкой аватара
@@ -29,9 +29,7 @@ export class AuthStore {
       let avatarUrl = '';
 
       if (file) {
-        console.log('aeawfaw');
         avatarUrl = await this.uploadAvatar(file); // Загрузка файла
-        console.log('drdrgdrg');
       }
 
       await this.register(name, email, password, avatarUrl); // Регистрация
@@ -43,22 +41,21 @@ export class AuthStore {
 
   // Загрузка файла аватара
   async uploadAvatar(file: File): Promise<string> {
-    console.log('afawfaw');
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'image_upload');
-    console.log(formData);
 
-    const response = await upload(formData);
+    const response = await fetch('https://api.escuelajs.co/api/v1/files/upload', {
+      method: 'POST',
+      body: formData,
+    });
 
     if (!response.ok) {
       throw new Error('Failed to upload avatar.');
     }
 
     const data = await response.json();
-    console.log(data.location);
     return data.location; // URL загруженного файла
-  };
+  }
 
   async register(name: string, email: string, password: string, avatar: string) {
     try {

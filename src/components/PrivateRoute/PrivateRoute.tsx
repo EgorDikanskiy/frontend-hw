@@ -3,7 +3,6 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Loader from 'components/Loader';
 import { routerUrls } from 'config/routerUrls';
-// import { useAuthStore } from '../../App/pages/Auth/context/AuthContext';
 import { useRootStore } from 'stores/RootStore';
 
 interface PrivateRouteProps {
