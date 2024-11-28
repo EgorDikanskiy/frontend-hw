@@ -5,8 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Text from 'components/Text';
 import { routerUrls } from 'config/routerUrls';
-import { useAuthStore } from '../../../Auth/context/AuthContext';
-import { useCartStore } from '../../../CartPage/context/CartContext';
+// import { useAuthStore } from '../../../Auth/context/AuthContext';
+// import { useCartStore } from '../../../CartPage/context/CartContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './ItemInfo.module.scss';
 
 export type ItemInfoProps = {
@@ -18,8 +19,7 @@ export type ItemInfoProps = {
 };
 
 const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, id, image }) => {
-  const authStore = useAuthStore();
-  const cartStore = useCartStore();
+  const { authStore, cartStore } = useRootStore();
   const { user } = authStore;
   const [isInCart, setIsInCart] = useState(false);
   const navigate = useNavigate();

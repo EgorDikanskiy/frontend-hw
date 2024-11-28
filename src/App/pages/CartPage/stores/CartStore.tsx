@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { RootStore } from 'stores/RootStore';
 
 export interface CartItem {
   id: number;
@@ -10,9 +11,11 @@ export interface CartItem {
 
 export class CartStore {
   cart: CartItem[] = [];
+  rootStore: RootStore;
 
-  constructor() {
+  constructor(rootStore: RootStore) {
     makeAutoObservable(this);
+    this.rootStore = rootStore;
 
     // Загрузка данных из localStorage при инициализации
     const storedCart = localStorage.getItem('cart');

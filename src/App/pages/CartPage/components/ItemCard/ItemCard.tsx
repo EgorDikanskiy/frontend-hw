@@ -2,12 +2,13 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button';
+import { useRootStore } from 'stores/RootStore';
 import { filterUrlImage } from 'utils/filterUrlImage';
-import { useCartStore } from '../../context/CartContext';
+// import { useCartStore } from '../../context/CartContext';
 import styles from './Item.module.scss';
 
 const ItemCard = observer(() => {
-  const cartStore = useCartStore();
+  const { cartStore } = useRootStore();
   const { cart, removeFromCart, updateQuantity } = cartStore;
 
   const handleAddQuantity = (item: { id: number; quantity: number }) => {

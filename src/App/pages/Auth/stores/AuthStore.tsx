@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { login, getProfile, refreshToken, register, upload } from 'api/auth';
+import { RootStore } from 'stores/RootStore';
 
 export interface User {
   id: number;
@@ -10,14 +11,16 @@ export interface User {
 }
 
 export class AuthStore {
-  user: User | null = null; // Текущий пользователь
+  rootStore: RootStore;
+  user: User | null = null;
   accessToken: string | null = localStorage.getItem('access_token');
   refreshToken: string | null = localStorage.getItem('refresh_token');
   loading: boolean = false;
 
-  constructor() {
+  constructor(rootStore: RootStore) {
     makeAutoObservable(this);
     this.loadUserFromStorage();
+    this.rootStore = rootStore;
   }
 
   // Регистрация с загрузкой аватара
@@ -26,7 +29,9 @@ export class AuthStore {
       let avatarUrl = '';
 
       if (file) {
+        console.log('aeawfaw');
         avatarUrl = await this.uploadAvatar(file); // Загрузка файла
+        console.log('drdrgdrg');
       }
 
       await this.register(name, email, password, avatarUrl); // Регистрация
@@ -38,8 +43,11 @@ export class AuthStore {
 
   // Загрузка файла аватара
   async uploadAvatar(file: File): Promise<string> {
+    console.log('afawfaw');
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('upload_preset', 'image_upload');
+    console.log(formData);
 
     const response = await upload(formData);
 
@@ -48,6 +56,7 @@ export class AuthStore {
     }
 
     const data = await response.json();
+    console.log(data.location);
     return data.location; // URL загруженного файла
   }
 

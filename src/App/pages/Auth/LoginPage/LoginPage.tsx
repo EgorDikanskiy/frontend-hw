@@ -4,14 +4,15 @@ import { useNavigate, Link } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import { routerUrls } from 'config/routerUrls';
-import { useAuthStore } from '../context/AuthContext';
+// import { useAuthStore } from '../context/AuthContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './Login.module.scss';
 
 const Login: React.FC = observer(() => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
-  const authStore = useAuthStore();
+  const { authStore } = useRootStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

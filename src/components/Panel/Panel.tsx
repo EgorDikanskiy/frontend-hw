@@ -2,7 +2,8 @@ import { observer } from 'mobx-react-lite';
 import React, { useCallback } from 'react';
 import { useNavigate, Link, useLocation, useMatch } from 'react-router-dom';
 import { routerUrls } from 'config/routerUrls';
-import { useAuthStore } from '../../App/pages/Auth/context/AuthContext';
+// import { useAuthStore } from '../../App/pages/Auth/context/AuthContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './Panel.module.scss';
 
 const getProfileColor = () => {
@@ -20,7 +21,7 @@ const getProfileColor = () => {
 
 const Panel: React.FC = observer(() => {
   const navigate = useNavigate();
-  const authStore = useAuthStore();
+  const { authStore } = useRootStore();
   const isCartActive = useMatch(routerUrls.cart.mask);
 
   const { user } = authStore;

@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Loader from 'components/Loader';
 import { routerUrls } from 'config/routerUrls';
-import { useAuthStore } from '../context/AuthContext';
+// import { useAuthStore } from '../context/AuthContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './Profile.module.scss';
 
 const Profile: React.FC = observer(() => {
-  const authStore = useAuthStore();
+  const { authStore } = useRootStore();
   const { user, logout } = authStore;
   const navigate = useNavigate();
 

@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import { routerUrls } from 'config/routerUrls';
-import { useAuthStore } from '../context/AuthContext';
+// import { useAuthStore } from '../context/AuthContext';
+import { useRootStore } from 'stores/RootStore';
 import styles from './Register.module.scss';
 
 const RegisterForm = observer(() => {
@@ -16,7 +17,8 @@ const RegisterForm = observer(() => {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
-  const authStore = useAuthStore();
+  const { authStore } = useRootStore();
+  const { registerWithAvatar } = authStore;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ const RegisterForm = observer(() => {
 
     setUploading(true);
     try {
-      await authStore.registerWithAvatar(name, email, password, file); // Используем метод AuthStore
+      await registerWithAvatar(name, email, password, file); // Используем метод AuthStore
       alert('Registration successful! You are now logged in.');
       navigate(routerUrls.profile.mask);
     } catch (err) {
