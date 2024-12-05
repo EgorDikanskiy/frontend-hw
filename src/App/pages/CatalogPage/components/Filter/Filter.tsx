@@ -27,7 +27,7 @@ const Filter = observer(() => {
   );
 
   const getTitle = useCallback((values: Option[]) => {
-    return values.length === 0 ? 'Filter by categories' : values.map(({ value }) => value).join(', ');
+    return values.length === 0 ? 'Фильтр по категориям' : values.map(({ value }) => value).join(', ');
   }, []);
 
   const handleApplyPriceFilter = useCallback(

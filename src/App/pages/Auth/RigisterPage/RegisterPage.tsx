@@ -22,18 +22,17 @@ const RegisterForm = observer(() => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match. Please try again.');
+      setError('Пароли не совпадают');
       return;
     }
 
     setUploading(true);
     try {
       await authStore.registerWithAvatar(name, email, password, file); // Используем метод AuthStore
-      alert('Registration successful! You are now logged in.');
+      alert('Регистрация успешна!');
       navigate(routerUrls.profile.mask);
     } catch (err) {
-      console.error('Registration failed:', err);
-      setError('Registration failed. Please try again.');
+      setError('Ошибка. Попробуйте снова.');
     } finally {
       setUploading(false);
     }
@@ -54,7 +53,7 @@ const RegisterForm = observer(() => {
       <form onSubmit={handleSubmit} className={styles.register__form}>
         <div>
           <label>
-            Name:
+            Имя:
             <Input className={styles.register__input} type="text" value={name} onChange={handleNameChange} required />
           </label>
         </div>
@@ -72,7 +71,7 @@ const RegisterForm = observer(() => {
         </div>
         <div>
           <label>
-            Password:
+            Пароль:
             <Input
               className={styles.register__input}
               type="password"
@@ -84,7 +83,7 @@ const RegisterForm = observer(() => {
         </div>
         <div>
           <label>
-            Confirm Password:
+            Подтвердите пароль:
             <Input
               className={styles.register__input}
               type="password"
@@ -97,14 +96,14 @@ const RegisterForm = observer(() => {
         {error && <div className={styles.register__error}>{error}</div>}
         <div>
           <label>
-            Avatar File:
+            Автарка:
             <input className={styles.register__file_input} type="file" accept="image/*" onChange={handleFileChange} />
           </label>
         </div>
-        {uploading && <div className={styles.register__loading}>Uploading file...</div>}
+        {uploading && <div className={styles.register__loading}>Загрузка файла...</div>}
         <div className={styles.register__button_container}>
           <Button className={styles.register__button} type="submit" disabled={uploading}>
-            Register
+            Зарегистрироваться
           </Button>
         </div>
       </form>

@@ -2,18 +2,17 @@ import { observer } from 'mobx-react-lite';
 import React, { useCallback } from 'react';
 import { useNavigate, Link, useLocation, useMatch } from 'react-router-dom';
 import { routerUrls } from 'config/routerUrls';
-// import { useAuthStore } from '../../App/pages/Auth/context/AuthContext';
 import { useRootStore } from 'stores/RootStore';
 import styles from './Panel.module.scss';
 
 const getProfileColor = () => {
   switch (location.pathname) {
     case routerUrls.login.mask:
-      return '#518581';
+      return '#6286D5';
     case routerUrls.register.mask:
-      return '#518581';
+      return '#6286D5';
     case routerUrls.profile.mask:
-      return '#518581';
+      return '#6286D5';
     default:
       return '#151411';
   }
@@ -27,7 +26,7 @@ const Panel: React.FC = observer(() => {
   const { user } = authStore;
 
   const getCartColor = () => {
-    return isCartActive ? '#518581' : '#151411';
+    return isCartActive ? '#6286D5' : '#151411';
   };
 
   const handleProfileClick = useCallback(() => {

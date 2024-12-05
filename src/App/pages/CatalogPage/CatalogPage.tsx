@@ -35,7 +35,7 @@ const CatalogPageContent = observer(() => {
         {catalogStore.loading && <Loader />}
         {catalogStore.error && <p>{catalogStore.error}</p>}
       </div>
-      <div className={styles.footer}>{catalogStore.totalItemsCount && <Pagination />}</div>
+      <div className={styles.footer}>{catalogStore.totalItemsCount > 9 && <Pagination />}</div>
     </div>
   );
 });

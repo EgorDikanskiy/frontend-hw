@@ -27,7 +27,7 @@ const Catalog: React.FC<CatalogProps> = observer(({ cards, lenght_info, count_al
       {lenght_info && (
         <div>
           <Text className={styles.catalog__total} view="title" weight="bold">
-            Total Product <span className={styles.catalog__amount}>{count_all_items}</span>
+            Всего товаров <span className={styles.catalog__amount}>{count_all_items}</span>
           </Text>
         </div>
       )}
@@ -42,8 +42,8 @@ const Catalog: React.FC<CatalogProps> = observer(({ cards, lenght_info, count_al
                     title={card?.title}
                     subtitle={card?.description}
                     image={filterUrlImage(card.images[0])}
-                    contentSlot={'$' + card.price}
-                    actionSlot="More details"
+                    contentSlot={card.price + ' ₽'}
+                    actionSlot="Подробнее"
                   ></Card>
                 </Link>
               </div>

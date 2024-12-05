@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, HashRouter } from 'react-router-dom';
+import { Routes, Route, Navigate, HashRouter, BrowserRouter } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
 import RootLayout from 'components/RootLayout';
 import { routerUrls } from 'config/routerUrls';
@@ -12,10 +12,11 @@ import CatalogPage from './pages/CatalogPage';
 import CategoriesPage from './pages/CategoriesPage';
 import DetailPage from './pages/DetailPage';
 import PaymentPage from './pages/PaymentPage';
+import Test from './pages/Testing';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <RootLayout>
         <Routes>
           <Route path={routerUrls.catalog.mask} element={<CatalogPage />} />
@@ -25,6 +26,7 @@ function App() {
           <Route path={routerUrls.cart.mask} element={<CartPage />} />
           <Route path={routerUrls.payment.mask} element={<PaymentPage />} />
           <Route path={routerUrls.login.mask} element={<Login />} />
+          <Route path="/test" element={<Test />} />
           <Route
             path={routerUrls.profile.mask}
             element={
@@ -37,7 +39,7 @@ function App() {
           <Route path="*" element={<Navigate to={routerUrls.catalog.mask} replace={true} />} />
         </Routes>
       </RootLayout>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 export default App;

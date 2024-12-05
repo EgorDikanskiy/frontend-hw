@@ -7,28 +7,24 @@ const AboutPage = () => {
     <div className="container">
       <div className={styles.aboutContainer}>
         <Text view="title" className={styles.centered}>
-          About Us
+          О нас
         </Text>
 
         <div className={styles.content}>
-          <img
-            src="https://lalasia-furniture-shop.netlify.app/static/media/video.292a5d4a7ef78a561e55.png"
-            alt="About Us"
-            className={styles.image}
-          />
+          <img src="https://i.imgur.com/8VJdA9s.jpeg" alt="О нас" className={styles.image} />
           <div className={styles.textContainer}>
             <Text view="p-18" className={styles.text}>
-              Welcome to our online store! We are a team of passionate individuals dedicated to bringing you the best
-              products at the best prices. Our goal is to make shopping easy, convenient, and enjoyable for everyone.
+              Добро пожаловать в наш интернет-магазин, созданный для всех, кто не представляет своей жизни без рыбалки!
+              Мы — команда увлечённых рыболовов, которые знают, как важно иметь надёжное снаряжение, чтобы каждая
+              рыбалка была успешной и запоминающейся.
             </Text>
             <Text view="p-18" className={styles.text}>
-              At our store, we offer a wide range of products, from electronics to clothing, all carefully selected for
-              quality and value. Our customer support team is always here to help with any questions or concerns you may
-              have.
+              В нашем магазине вы найдёте всё необходимое для рыбалки: от удилищ и катушек до приманок, одежды и
+              аксессуаров. Мы сотрудничаем только с проверенными брендами, чтобы гарантировать качество каждого товара.
             </Text>
             <Text view="p-18" className={styles.text}>
-              Thank you for visiting our site. We hope you find what youre looking for and enjoy your shopping
-              experience with us!
+              Мы не просто продаём товары для рыбалки — мы делимся своей страстью к этому удивительному занятию.
+              Присоединяйтесь к нашей рыбацкой семье и отправляйтесь за своими самыми большими трофеями вместе с нами!
             </Text>
           </div>
         </div>

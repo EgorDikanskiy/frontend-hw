@@ -58,7 +58,7 @@ const DetailPage = observer(() => {
             />
           </div>
           <Text className={styles.subtitle} view="title" weight="bold">
-            Related Items
+            Похожие товары
           </Text>
           <Catalog cards={detailStore.relatedItems} lenght_info={false} count_all_items={3} />
         </div>

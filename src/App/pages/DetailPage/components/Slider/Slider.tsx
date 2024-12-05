@@ -126,7 +126,7 @@ const DemoCarousel: React.FC<CarouselProps> = observer(({ images }) => {
     >
       {images.map((image) => (
         <div key={image}>
-          <img src={filterUrlImage(image)} />
+          <img src={filterUrlImage(image)} className={styles.image} />
         </div>
       ))}
     </Carousel>

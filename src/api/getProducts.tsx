@@ -20,5 +20,5 @@ export async function getProducts(params: GetProductsParams): Promise<Products[]
   const response = await axios.get<Products[]>(apiRoutes.products, {
     params,
   });
-  return response.data;
+  return response.data.products;
 }

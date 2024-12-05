@@ -6,7 +6,7 @@ class QueryModel {
   page: number = 1;
   limit: number = 9;
   priceMin: number = 1;
-  priceMax: number = 1000;
+  priceMax: number = 50000;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,7 +18,7 @@ class QueryModel {
     this.categoryId = searchParams.get('categoryId') ? Number(searchParams.get('categoryId')) : null;
     this.page = Number(searchParams.get('page')) || 1;
     this.priceMin = Number(searchParams.get('price_min')) || 0;
-    this.priceMax = Number(searchParams.get('price_max')) || 1000;
+    this.priceMax = Number(searchParams.get('price_max')) || 50000;
   }
 
   // Возвращаем параметры для API запроса

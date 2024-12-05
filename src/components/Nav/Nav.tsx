@@ -13,21 +13,21 @@ const Navigation = () => {
             [styles.active]: useMatch(routerUrls.catalog.mask),
           })}
         >
-          <Link to={routerUrls.catalog.mask}>Products</Link>
+          <Link to={routerUrls.catalog.mask}>Товары</Link>
         </li>
         <li
           className={classNames(styles.navigation__item, {
             [styles.active]: useMatch(routerUrls.categories.mask),
           })}
         >
-          <Link to={routerUrls.categories.mask}>Categories</Link>
+          <Link to={routerUrls.categories.mask}>Категории</Link>
         </li>
         <li
           className={classNames(styles.navigation__item, {
             [styles.active]: useMatch(routerUrls.about_us.mask),
           })}
         >
-          <Link to={routerUrls.about_us.mask}>About us</Link>
+          <Link to={routerUrls.about_us.mask}>О нас</Link>
         </li>
       </ul>
     </nav>

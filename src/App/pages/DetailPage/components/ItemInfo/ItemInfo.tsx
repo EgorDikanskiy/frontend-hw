@@ -5,8 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Text from 'components/Text';
 import { routerUrls } from 'config/routerUrls';
-// import { useAuthStore } from '../../../Auth/context/AuthContext';
-// import { useCartStore } from '../../../CartPage/context/CartContext';
 import { useRootStore } from 'stores/RootStore';
 import styles from './ItemInfo.module.scss';
 
@@ -42,11 +40,11 @@ const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, 
         {description}
       </Text>
       <Text className={styles.item__price} view="title" weight="bold">
-        {'$' + price}
+        {price + ' ₽'}
       </Text>
       <div className={styles.buttons}>
         <Link to={routerUrls.payment.mask}>
-          <Button>Buy Now</Button>
+          <Button>Купить сейчас</Button>
         </Link>
         <Button
           onClick={handleAddToCart}
@@ -54,7 +52,7 @@ const ItemInfo: React.FC<ItemInfoProps> = observer(({ name, description, price, 
             [styles.buttons__cart_active]: isInCart,
           })}
         >
-          {isInCart ? 'In Cart' : 'Add to Cart'}
+          {isInCart ? 'В корзине' : 'Добавить в корзину'}
         </Button>
       </div>
     </div>

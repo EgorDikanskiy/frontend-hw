@@ -31,9 +31,9 @@ const Search = observer(() => {
   return (
     <div className={styles.search}>
       <div className={styles.search__input}>
-        <Input value={query} onChange={handleSearchChange} placeholder="Search product" />
+        <Input value={query} onChange={handleSearchChange} placeholder="Название товара" />
       </div>
-      <Button onClick={handleSearchClick}>Find now</Button>
+      <Button onClick={handleSearchClick}>Найти</Button>
     </div>
   );
 });

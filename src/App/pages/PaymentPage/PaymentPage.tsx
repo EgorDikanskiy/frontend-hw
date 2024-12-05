@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import { routerUrls } from 'config/routerUrls';
-// import { useCartStore } from '../CartPage/context/CartContext';
 import { useRootStore } from 'stores/RootStore';
 import styles from './PaymentPage.module.scss';
 

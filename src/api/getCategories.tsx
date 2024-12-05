@@ -11,5 +11,5 @@ export interface Category {
 
 export async function getCategories(): Promise<Category[]> {
   const response = await axios.get(apiRoutes.categories);
-  return response.data;
+  return response.data.categories;
 }

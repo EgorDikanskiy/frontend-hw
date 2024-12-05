@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Button from 'components/Button';
 import { useRootStore } from 'stores/RootStore';
 import { filterUrlImage } from 'utils/filterUrlImage';
-// import { useCartStore } from '../../context/CartContext';
 import styles from './Item.module.scss';
 
 const ItemCard = observer(() => {
@@ -29,7 +28,7 @@ const ItemCard = observer(() => {
           <div className={styles.itemEditButtons}>
             <div className={styles.itemDetails}>
               <h3 className={styles.itemName}>{item.name}</h3>
-              <p className={styles.itemPrice}>{item.price * item.quantity} $</p>
+              <p className={styles.itemPrice}>{item.price * item.quantity} ₽</p>
               <div className={styles.quantityControls}>
                 <button className={styles.decreaseButton} onClick={() => handleReduceQuantity(item)}>
                   −

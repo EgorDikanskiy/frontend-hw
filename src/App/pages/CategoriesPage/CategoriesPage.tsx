@@ -20,14 +20,14 @@ const CategoriesPage = observer(() => {
   return (
     <div className="container">
       <Text className={styles.title} view="title">
-        Categories
+        Категории
       </Text>
       <InfiniteScroll
         dataLength={displayedCategories.length}
         next={displayNextBatch}
         hasMore={hasMoreCategories}
         loader={<Loader className={styles.categories__loader} />}
-        endMessage={<p>No more categories to show</p>}
+        endMessage={<p></p>}
       >
         <div className={styles.categories}>
           {displayedCategories.map((category: { id: React.Key | null | undefined; image: string; name: string }) => (

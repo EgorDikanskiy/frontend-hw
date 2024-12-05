@@ -27,7 +27,7 @@ const Header = () => {
         <div className={classNames(styles.menu, { [styles.menu_open]: isMenuOpen })}>
           <div className={styles.header__inner}>
             <Link to={routerUrls.catalog.mask}>
-              <img src={logo} alt="Logo" />
+              <img className={styles.logo} src={logo} alt="Logo" />
             </Link>
             <Navigation />
             <Panel />
